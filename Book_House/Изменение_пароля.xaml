@@ -1,0 +1,20 @@
+﻿<Page x:Class="Book_House.Изменение_пароля"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Book_House"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="1036"
+      Title="Изменение_пароля">
+
+    <Grid>
+        <Image Source="Resources/stock-photo-dark-wooden-background-horizontal-planks.jpg" Stretch="Fill"></Image>
+        <TextBlock Text="Ваш пароль:" Style="{DynamicResource CustomFont}" Margin="173,291,568,338" FontSize="40" Width="295"></TextBlock>
+        <TextBlock Text="Повторите пароль:" Style="{DynamicResource CustomFont}" Margin="36,371,568,258" FontSize="40" Width="432"></TextBlock>
+        <PasswordBox x:Name="PasswordBoxx" Margin="487,302,201,338"></PasswordBox>
+        <PasswordBox x:Name="PasswordBox" Margin="487,371,201,269"></PasswordBox>
+        <Button Content="Сохранить" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Margin="237,546,597,58" Height="71" Width="202"/>
+        <Button Content="Отмена" Click="Back" Style="{DynamicResource ButtonStyle}" Margin="541,546,293,58" Height="71" Width="202"/>
+    </Grid>
+</Page>

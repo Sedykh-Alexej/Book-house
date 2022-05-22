@@ -1,0 +1,36 @@
+﻿<Page x:Class="Book_House.Books1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Book_House"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="1036"
+      Title="Books1">
+    <Grid>
+        <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill"></Image>
+        <Label x:Name="txtRab" Style="{DynamicResource CustomLabel}"  Content="Выберите жанр:" Margin="329,0,459,636" Width="248" Height="39" FontSize="25"></Label>
+        <ComboBox DisplayMemberPath="Наименование" x:Name="Жанр" Margin="582,0,172,641"/>
+        <DataGrid x:Name="DGridBook" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,39,0,89">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Название}" Width="350"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Цена}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Количество}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Комментарий" Binding="{Binding Комментарий}" Width="350"></DataGridTextColumn>
+
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редактировать" Name="BtnEdit" Click="BtnEdit_click" Style="{DynamicResource ButtonStyle}"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Content="Добавить" HorizontalAlignment="Center" Name="BtnAdd" Click="BtnAdd_click"  Style="{DynamicResource ButtonStyle}" Margin="37,614,770,11" Height="50" Width="229" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Удалить" HorizontalAlignment="Center" Name="BtnDelete" Click="BtnDelete_click" Style="{DynamicResource ButtonStyle}" Margin="780,609,42,11" Height="55" Width="214"/>
+        <Button Content="Выход" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="390,614,416,11" Height="50" Width="230" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Обновить" HorizontalAlignment="Center" x:Name="BtnAdd_Copy1" Click="Обновить"  Style="{DynamicResource ButtonStyle}" Margin="891,0,10,643" Height="32" Width="135" RenderTransformOrigin="-0.573,0.866"/>
+    </Grid>
+</Page>

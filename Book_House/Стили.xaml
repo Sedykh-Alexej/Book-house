@@ -1,0 +1,19 @@
+﻿<Page x:Class="Book_House.Стили"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Book_House"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="1036"
+      Title="Стили">
+
+    <Grid>
+        <Image Source="Resources/stock-photo-dark-wooden-background-horizontal-planks.jpg" Stretch="Fill"></Image>
+        <Button Content="Оранжевый стиль" Style="{DynamicResource ButtonStyle}" Margin="447,77,86,281" Height="61" Width="259" Click="Stylee1"></Button>
+        <Button Content="Фиолетовый стиль" Style="{DynamicResource ButtonStyle}" Margin="68,77,465,281" Height="61" Width="259" Click="Stylee2" RenderTransformOrigin="0.253,1.353"></Button>
+        <Button Content="Синий стиль" Style="{DynamicResource ButtonStyle}" Margin="68,258,465,100" Height="61" Width="259" Click="Stylee3" RenderTransformOrigin="0.253,1.353"/>
+        <Button Content="Белый стиль" Style="{DynamicResource ButtonStyle}" Margin="447,258,86,100" Height="61" Width="259" Click="Stylee4" RenderTransformOrigin="0.253,1.353"/>
+        <Button Content="Выход" Style="{DynamicResource ButtonStyle}" Margin="386,541,391,84" Height="50" Width="259" Click="Exit"/>
+    </Grid>
+</Page>

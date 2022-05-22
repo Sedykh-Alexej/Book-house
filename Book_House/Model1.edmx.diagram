@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9f375eb240f744daa793a3dd1d48499c" Name="Diagram1">
+        <EntityTypeShape EntityType="Book_houseModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_houseModel.Должности" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_houseModel.Жанры" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_houseModel.Клиенты" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_houseModel.Книги" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_houseModel.Книги_в_аренде" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_houseModel.Поставки" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_houseModel.Поставщики" Width="1.5" PointX="6" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_houseModel.Сотрудники" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_houseModel.Списание_книг" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Book_houseModel.Статус" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <AssociationConnector Association="Book_houseModel.FK_Сотрудники_Должности" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_houseModel.FK_Книги_Жанры" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_houseModel.FK_Книги_в_аренде_Клиенты" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_houseModel.FK_Книги_в_аренде_Книги" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_houseModel.FK_Поставки_Книги" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_houseModel.FK_Списание_книг_Книги" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_houseModel.FK_Книги_в_аренде_Сотрудники" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_houseModel.FK_Книги_в_аренде_Статус" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_houseModel.FK_Поставки_Поставщики" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_houseModel.FK_Поставки_Сотрудники" ManuallyRouted="false" />
+        <AssociationConnector Association="Book_houseModel.FK_Списание_книг_Сотрудники" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

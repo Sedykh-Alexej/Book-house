@@ -1,0 +1,783 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Book_houseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Должности">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Должность" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Жанры">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Клиенты">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Фамилия" Type="varchar" MaxLength="50" />
+          <Property Name="Имя" Type="varchar" MaxLength="50" />
+          <Property Name="Отчество" Type="varchar" MaxLength="50" />
+          <Property Name="Адрес" Type="varchar" MaxLength="50" />
+          <Property Name="Телефон" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Книги">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Жанр" Type="int" Nullable="false" />
+          <Property Name="Цена" Type="int" Nullable="false" />
+          <Property Name="Комментарий" Type="varchar" MaxLength="50" />
+          <Property Name="Количество" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Книги_в_аренде">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Сотрудника" Type="int" />
+          <Property Name="id_Клиента" Type="int" />
+          <Property Name="id_Книги" Type="int" />
+          <Property Name="Дата_получения" Type="date" Nullable="false" />
+          <Property Name="Дата_возврата" Type="date" Nullable="false" />
+          <Property Name="Статус" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Поставки">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Поставщика" Type="int" />
+          <Property Name="id_Книги" Type="int" />
+          <Property Name="Количество" Type="int" Nullable="false" />
+          <Property Name="Дата_поставки" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_сотрудника" Type="int" />
+        </EntityType>
+        <EntityType Name="Поставщики">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Адрес" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Телефон" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Фамилия" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Имя" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Отчество" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Должность" Type="int" Nullable="false" />
+          <Property Name="Адрес" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Телефон" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Пароль" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Стиль" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="График_работы" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Списание_книг">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Книги" Type="int" />
+          <Property Name="Количество" Type="int" Nullable="false" />
+          <Property Name="Причина" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_сотрудника" Type="int" />
+        </EntityType>
+        <EntityType Name="Статус">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Название" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Книги_в_аренде_Клиенты">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Книги_в_аренде" Type="Self.Книги_в_аренде" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Книги_в_аренде">
+              <PropertyRef Name="id_Клиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Книги_в_аренде_Книги">
+          <End Role="Книги" Type="Self.Книги" Multiplicity="0..1" />
+          <End Role="Книги_в_аренде" Type="Self.Книги_в_аренде" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Книги">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Книги_в_аренде">
+              <PropertyRef Name="id_Книги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Книги_в_аренде_Сотрудники">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="Книги_в_аренде" Type="Self.Книги_в_аренде" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Книги_в_аренде">
+              <PropertyRef Name="id_Сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Книги_в_аренде_Статус">
+          <End Role="Статус" Type="Self.Статус" Multiplicity="1" />
+          <End Role="Книги_в_аренде" Type="Self.Книги_в_аренде" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Статус">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Книги_в_аренде">
+              <PropertyRef Name="Статус" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Книги_Жанры">
+          <End Role="Жанры" Type="Self.Жанры" Multiplicity="1" />
+          <End Role="Книги" Type="Self.Книги" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Жанры">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Книги">
+              <PropertyRef Name="Жанр" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Поставки_Книги">
+          <End Role="Книги" Type="Self.Книги" Multiplicity="0..1" />
+          <End Role="Поставки" Type="Self.Поставки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Книги">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Поставки">
+              <PropertyRef Name="id_Книги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Поставки_Поставщики">
+          <End Role="Поставщики" Type="Self.Поставщики" Multiplicity="0..1" />
+          <End Role="Поставки" Type="Self.Поставки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Поставщики">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Поставки">
+              <PropertyRef Name="id_Поставщика" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Поставки_Сотрудники">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="Поставки" Type="Self.Поставки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Поставки">
+              <PropertyRef Name="id_сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Сотрудники_Должности">
+          <End Role="Должности" Type="Self.Должности" Multiplicity="1" />
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должности">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Сотрудники">
+              <PropertyRef Name="Должность" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Списание_книг_Книги">
+          <End Role="Книги" Type="Self.Книги" Multiplicity="0..1" />
+          <End Role="Списание_книг" Type="Self.Списание_книг" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Книги">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Списание_книг">
+              <PropertyRef Name="id_Книги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Списание_книг_Сотрудники">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="Списание_книг" Type="Self.Списание_книг" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Списание_книг">
+              <PropertyRef Name="id_сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Book_houseModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Должности" EntityType="Self.Должности" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Жанры" EntityType="Self.Жанры" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Клиенты" EntityType="Self.Клиенты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Книги" EntityType="Self.Книги" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Книги_в_аренде" EntityType="Self.Книги_в_аренде" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Поставки" EntityType="Self.Поставки" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Поставщики" EntityType="Self.Поставщики" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Списание_книг" EntityType="Self.Списание_книг" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Статус" EntityType="Self.Статус" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Книги_в_аренде_Клиенты" Association="Self.FK_Книги_в_аренде_Клиенты">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Книги_в_аренде" EntitySet="Книги_в_аренде" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Книги_в_аренде_Книги" Association="Self.FK_Книги_в_аренде_Книги">
+            <End Role="Книги" EntitySet="Книги" />
+            <End Role="Книги_в_аренде" EntitySet="Книги_в_аренде" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Книги_в_аренде_Сотрудники" Association="Self.FK_Книги_в_аренде_Сотрудники">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Книги_в_аренде" EntitySet="Книги_в_аренде" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Книги_в_аренде_Статус" Association="Self.FK_Книги_в_аренде_Статус">
+            <End Role="Статус" EntitySet="Статус" />
+            <End Role="Книги_в_аренде" EntitySet="Книги_в_аренде" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Книги_Жанры" Association="Self.FK_Книги_Жанры">
+            <End Role="Жанры" EntitySet="Жанры" />
+            <End Role="Книги" EntitySet="Книги" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Поставки_Книги" Association="Self.FK_Поставки_Книги">
+            <End Role="Книги" EntitySet="Книги" />
+            <End Role="Поставки" EntitySet="Поставки" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Поставки_Поставщики" Association="Self.FK_Поставки_Поставщики">
+            <End Role="Поставщики" EntitySet="Поставщики" />
+            <End Role="Поставки" EntitySet="Поставки" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Поставки_Сотрудники" Association="Self.FK_Поставки_Сотрудники">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Поставки" EntitySet="Поставки" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сотрудники_Должности" Association="Self.FK_Сотрудники_Должности">
+            <End Role="Должности" EntitySet="Должности" />
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Списание_книг_Книги" Association="Self.FK_Списание_книг_Книги">
+            <End Role="Книги" EntitySet="Книги" />
+            <End Role="Списание_книг" EntitySet="Списание_книг" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Списание_книг_Сотрудники" Association="Self.FK_Списание_книг_Сотрудники">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Списание_книг" EntitySet="Списание_книг" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Book_houseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Должности">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Должность" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.FK_Сотрудники_Должности" FromRole="Должности" ToRole="Сотрудники" />
+        </EntityType>
+        <EntityType Name="Жанры">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Книги" Relationship="Self.FK_Книги_Жанры" FromRole="Жанры" ToRole="Книги" />
+        </EntityType>
+        <EntityType Name="Клиенты">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Книги_в_аренде" Relationship="Self.FK_Книги_в_аренде_Клиенты" FromRole="Клиенты" ToRole="Книги_в_аренде" />
+        </EntityType>
+        <EntityType Name="Книги">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Жанр" Type="Int32" Nullable="false" />
+          <Property Name="Цена" Type="Int32" Nullable="false" />
+          <Property Name="Комментарий" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Количество" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Жанры" Relationship="Self.FK_Книги_Жанры" FromRole="Книги" ToRole="Жанры" />
+          <NavigationProperty Name="Книги_в_аренде" Relationship="Self.FK_Книги_в_аренде_Книги" FromRole="Книги" ToRole="Книги_в_аренде" />
+          <NavigationProperty Name="Поставки" Relationship="Self.FK_Поставки_Книги" FromRole="Книги" ToRole="Поставки" />
+          <NavigationProperty Name="Списание_книг" Relationship="Self.FK_Списание_книг_Книги" FromRole="Книги" ToRole="Списание_книг" />
+        </EntityType>
+        <EntityType Name="Книги_в_аренде">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Сотрудника" Type="Int32" />
+          <Property Name="id_Клиента" Type="Int32" />
+          <Property Name="id_Книги" Type="Int32" />
+          <Property Name="Дата_получения" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Дата_возврата" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Статус" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Клиенты" Relationship="Self.FK_Книги_в_аренде_Клиенты" FromRole="Книги_в_аренде" ToRole="Клиенты" />
+          <NavigationProperty Name="Книги" Relationship="Self.FK_Книги_в_аренде_Книги" FromRole="Книги_в_аренде" ToRole="Книги" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.FK_Книги_в_аренде_Сотрудники" FromRole="Книги_в_аренде" ToRole="Сотрудники" />
+          <NavigationProperty Name="Статус1" Relationship="Self.FK_Книги_в_аренде_Статус" FromRole="Книги_в_аренде" ToRole="Статус" />
+        </EntityType>
+        <EntityType Name="Поставки">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Поставщика" Type="Int32" />
+          <Property Name="id_Книги" Type="Int32" />
+          <Property Name="Количество" Type="Int32" Nullable="false" />
+          <Property Name="Дата_поставки" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_сотрудника" Type="Int32" />
+          <NavigationProperty Name="Книги" Relationship="Self.FK_Поставки_Книги" FromRole="Поставки" ToRole="Книги" />
+          <NavigationProperty Name="Поставщики" Relationship="Self.FK_Поставки_Поставщики" FromRole="Поставки" ToRole="Поставщики" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.FK_Поставки_Сотрудники" FromRole="Поставки" ToRole="Сотрудники" />
+        </EntityType>
+        <EntityType Name="Поставщики">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Поставки" Relationship="Self.FK_Поставки_Поставщики" FromRole="Поставщики" ToRole="Поставки" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Должность" Type="Int32" Nullable="false" />
+          <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Пароль" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Стиль" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="График_работы" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Должности" Relationship="Self.FK_Сотрудники_Должности" FromRole="Сотрудники" ToRole="Должности" />
+          <NavigationProperty Name="Книги_в_аренде" Relationship="Self.FK_Книги_в_аренде_Сотрудники" FromRole="Сотрудники" ToRole="Книги_в_аренде" />
+          <NavigationProperty Name="Поставки" Relationship="Self.FK_Поставки_Сотрудники" FromRole="Сотрудники" ToRole="Поставки" />
+          <NavigationProperty Name="Списание_книг" Relationship="Self.FK_Списание_книг_Сотрудники" FromRole="Сотрудники" ToRole="Списание_книг" />
+        </EntityType>
+        <EntityType Name="Списание_книг">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Книги" Type="Int32" />
+          <Property Name="Количество" Type="Int32" Nullable="false" />
+          <Property Name="Причина" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_сотрудника" Type="Int32" />
+          <NavigationProperty Name="Книги" Relationship="Self.FK_Списание_книг_Книги" FromRole="Списание_книг" ToRole="Книги" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.FK_Списание_книг_Сотрудники" FromRole="Списание_книг" ToRole="Сотрудники" />
+        </EntityType>
+        <EntityType Name="Статус">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Книги_в_аренде" Relationship="Self.FK_Книги_в_аренде_Статус" FromRole="Статус" ToRole="Книги_в_аренде" />
+        </EntityType>
+        <Association Name="FK_Сотрудники_Должности">
+          <End Role="Должности" Type="Self.Должности" Multiplicity="1" />
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должности">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Сотрудники">
+              <PropertyRef Name="Должность" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Книги_Жанры">
+          <End Role="Жанры" Type="Self.Жанры" Multiplicity="1" />
+          <End Role="Книги" Type="Self.Книги" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Жанры">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Книги">
+              <PropertyRef Name="Жанр" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Книги_в_аренде_Клиенты">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Книги_в_аренде" Type="Self.Книги_в_аренде" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Книги_в_аренде">
+              <PropertyRef Name="id_Клиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Книги_в_аренде_Книги">
+          <End Role="Книги" Type="Self.Книги" Multiplicity="0..1" />
+          <End Role="Книги_в_аренде" Type="Self.Книги_в_аренде" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Книги">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Книги_в_аренде">
+              <PropertyRef Name="id_Книги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Поставки_Книги">
+          <End Role="Книги" Type="Self.Книги" Multiplicity="0..1" />
+          <End Role="Поставки" Type="Self.Поставки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Книги">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Поставки">
+              <PropertyRef Name="id_Книги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Списание_книг_Книги">
+          <End Role="Книги" Type="Self.Книги" Multiplicity="0..1" />
+          <End Role="Списание_книг" Type="Self.Списание_книг" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Книги">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Списание_книг">
+              <PropertyRef Name="id_Книги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Книги_в_аренде_Сотрудники">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="Книги_в_аренде" Type="Self.Книги_в_аренде" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Книги_в_аренде">
+              <PropertyRef Name="id_Сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Книги_в_аренде_Статус">
+          <End Role="Статус" Type="Self.Статус" Multiplicity="1" />
+          <End Role="Книги_в_аренде" Type="Self.Книги_в_аренде" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Статус">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Книги_в_аренде">
+              <PropertyRef Name="Статус" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Поставки_Поставщики">
+          <End Role="Поставщики" Type="Self.Поставщики" Multiplicity="0..1" />
+          <End Role="Поставки" Type="Self.Поставки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Поставщики">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Поставки">
+              <PropertyRef Name="id_Поставщика" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Поставки_Сотрудники">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="Поставки" Type="Self.Поставки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Поставки">
+              <PropertyRef Name="id_сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Списание_книг_Сотрудники">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="Списание_книг" Type="Self.Списание_книг" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Списание_книг">
+              <PropertyRef Name="id_сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Book_houseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Должности" EntityType="Self.Должности" />
+          <EntitySet Name="Жанры" EntityType="Self.Жанры" />
+          <EntitySet Name="Клиенты" EntityType="Self.Клиенты" />
+          <EntitySet Name="Книги" EntityType="Self.Книги" />
+          <EntitySet Name="Книги_в_аренде" EntityType="Self.Книги_в_аренде" />
+          <EntitySet Name="Поставки" EntityType="Self.Поставки" />
+          <EntitySet Name="Поставщики" EntityType="Self.Поставщики" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
+          <EntitySet Name="Списание_книг" EntityType="Self.Списание_книг" />
+          <EntitySet Name="Статус" EntityType="Self.Статус" />
+          <AssociationSet Name="FK_Сотрудники_Должности" Association="Self.FK_Сотрудники_Должности">
+            <End Role="Должности" EntitySet="Должности" />
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Книги_Жанры" Association="Self.FK_Книги_Жанры">
+            <End Role="Жанры" EntitySet="Жанры" />
+            <End Role="Книги" EntitySet="Книги" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Книги_в_аренде_Клиенты" Association="Self.FK_Книги_в_аренде_Клиенты">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Книги_в_аренде" EntitySet="Книги_в_аренде" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Книги_в_аренде_Книги" Association="Self.FK_Книги_в_аренде_Книги">
+            <End Role="Книги" EntitySet="Книги" />
+            <End Role="Книги_в_аренде" EntitySet="Книги_в_аренде" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Поставки_Книги" Association="Self.FK_Поставки_Книги">
+            <End Role="Книги" EntitySet="Книги" />
+            <End Role="Поставки" EntitySet="Поставки" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Списание_книг_Книги" Association="Self.FK_Списание_книг_Книги">
+            <End Role="Книги" EntitySet="Книги" />
+            <End Role="Списание_книг" EntitySet="Списание_книг" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Книги_в_аренде_Сотрудники" Association="Self.FK_Книги_в_аренде_Сотрудники">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Книги_в_аренде" EntitySet="Книги_в_аренде" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Книги_в_аренде_Статус" Association="Self.FK_Книги_в_аренде_Статус">
+            <End Role="Статус" EntitySet="Статус" />
+            <End Role="Книги_в_аренде" EntitySet="Книги_в_аренде" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Поставки_Поставщики" Association="Self.FK_Поставки_Поставщики">
+            <End Role="Поставщики" EntitySet="Поставщики" />
+            <End Role="Поставки" EntitySet="Поставки" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Поставки_Сотрудники" Association="Self.FK_Поставки_Сотрудники">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Поставки" EntitySet="Поставки" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Списание_книг_Сотрудники" Association="Self.FK_Списание_книг_Сотрудники">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Списание_книг" EntitySet="Списание_книг" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Book_houseModelContainer" CdmEntityContainer="Book_houseEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Book_houseModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Должности">
+            <EntityTypeMapping TypeName="Book_houseModel.Должности">
+              <MappingFragment StoreEntitySet="Должности">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Должность" ColumnName="Должность" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Жанры">
+            <EntityTypeMapping TypeName="Book_houseModel.Жанры">
+              <MappingFragment StoreEntitySet="Жанры">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Клиенты">
+            <EntityTypeMapping TypeName="Book_houseModel.Клиенты">
+              <MappingFragment StoreEntitySet="Клиенты">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Книги">
+            <EntityTypeMapping TypeName="Book_houseModel.Книги">
+              <MappingFragment StoreEntitySet="Книги">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Жанр" ColumnName="Жанр" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="Комментарий" ColumnName="Комментарий" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Книги_в_аренде">
+            <EntityTypeMapping TypeName="Book_houseModel.Книги_в_аренде">
+              <MappingFragment StoreEntitySet="Книги_в_аренде">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_Сотрудника" ColumnName="id_Сотрудника" />
+                <ScalarProperty Name="id_Клиента" ColumnName="id_Клиента" />
+                <ScalarProperty Name="id_Книги" ColumnName="id_Книги" />
+                <ScalarProperty Name="Дата_получения" ColumnName="Дата_получения" />
+                <ScalarProperty Name="Дата_возврата" ColumnName="Дата_возврата" />
+                <ScalarProperty Name="Статус" ColumnName="Статус" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Поставки">
+            <EntityTypeMapping TypeName="Book_houseModel.Поставки">
+              <MappingFragment StoreEntitySet="Поставки">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_Поставщика" ColumnName="id_Поставщика" />
+                <ScalarProperty Name="id_Книги" ColumnName="id_Книги" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="Дата_поставки" ColumnName="Дата_поставки" />
+                <ScalarProperty Name="id_сотрудника" ColumnName="id_сотрудника" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Поставщики">
+            <EntityTypeMapping TypeName="Book_houseModel.Поставщики">
+              <MappingFragment StoreEntitySet="Поставщики">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сотрудники">
+            <EntityTypeMapping TypeName="Book_houseModel.Сотрудники">
+              <MappingFragment StoreEntitySet="Сотрудники">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Должность" ColumnName="Должность" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="Стиль" ColumnName="Стиль" />
+                <ScalarProperty Name="График_работы" ColumnName="График_работы" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Списание_книг">
+            <EntityTypeMapping TypeName="Book_houseModel.Списание_книг">
+              <MappingFragment StoreEntitySet="Списание_книг">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_Книги" ColumnName="id_Книги" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="Причина" ColumnName="Причина" />
+                <ScalarProperty Name="id_сотрудника" ColumnName="id_сотрудника" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Статус">
+            <EntityTypeMapping TypeName="Book_houseModel.Статус">
+              <MappingFragment StoreEntitySet="Статус">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

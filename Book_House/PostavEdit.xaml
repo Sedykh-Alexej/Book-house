@@ -1,0 +1,35 @@
+﻿<Page x:Class="Book_House.PostavEdit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Book_House"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="1036"
+      Title="PostavEdit">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="553"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="4"></Image>
+        <TextBlock Style="{DynamicResource CustomFont}"  Text="Наименование" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="1" Text="Адрес" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="2" Text="Телефон" FontSize="40"></TextBlock>
+
+        <TextBox Text="{Binding Наименование}" Grid.Column="1" Grid.Row="0" Margin="40,62,40,61" Name="Наименование"></TextBox>
+        <TextBox Text="{Binding Адрес}" Grid.Column="1" Grid.Row="1" Margin="40,61,40,62" Name="Адрес"></TextBox>
+        <TextBox Text="{Binding Телефон}" Grid.Column="1" Grid.Row="2" Margin="40,62,40,61" Name="Телефон"></TextBox>
+
+        <Button Content="Сохранить" Grid.Row="3" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="450,56.25,422,54.75" Width="164" Grid.ColumnSpan="2"/>
+    </Grid>
+</Page>

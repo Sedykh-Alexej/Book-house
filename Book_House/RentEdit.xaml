@@ -1,0 +1,50 @@
+﻿<Page x:Class="Book_House.RentEdit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Book_House"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="1036"
+      Title="RentEdit">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="553"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="6"></Image>
+        <TextBlock Style="{DynamicResource CustomFont}"  Text="Сотрудник" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="1" Text="Клиент" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="2" Text="Книга" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="3" Text="Дата возврата" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="4" Text="Статус" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" FontSize="20" Height="30" Margin="132,10,304,73" Width="117" Grid.Column="1" Grid.Row="1" Text="Фамилия:"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" FontSize="20" Height="23" Margin="183,45,304,45" Width="66" Grid.Column="1" Grid.Row="1" Text="Имя:"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" FontSize="20" Height="30" Margin="132,73,304,10" Width="117" Grid.Column="1" Grid.Row="1" Text="Отчество:"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="0" Grid.Column="1" Text="" FontSize="30" x:Name="Сотрудник"></TextBlock>
+
+
+        <ComboBox SelectedItem="{Binding Клиенты}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Фамилия" x:Name="КлиентФамилия" Margin="249,10,40,70"></ComboBox>
+        <ComboBox SelectedItem="{Binding Клиенты}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Имя" x:Name="КлиентИмя" Margin="249,40,40,40"></ComboBox>
+        <ComboBox SelectedItem="{Binding Клиенты}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Отчество" x:Name="КлиентОтчество" Margin="249,68,40,12"></ComboBox>
+        <ComboBox SelectedItem="{Binding Книги}" Grid.Column="1" Grid.Row="2" DisplayMemberPath="Название" Margin="40" x:Name="Книга"></ComboBox>
+        <TextBox Text="{Binding Дата_возврата}" Grid.Column="1" Grid.Row="3" Margin="40" Name="Дата_Возврата"></TextBox>
+        <ComboBox SelectedItem="{Binding Статус1}" Grid.Column="1" Grid.Row="4" DisplayMemberPath="Название" x:Name="Статус" Margin="40"></ComboBox>
+
+
+
+        <Button Content="Сохранить" Grid.Row="5" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="457,27,415,27" Width="164" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Page>

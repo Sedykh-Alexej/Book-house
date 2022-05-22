@@ -1,0 +1,16 @@
+﻿<Page x:Class="Book_House.График_работы"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Book_House"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="1036"
+      Title="График_работы">
+
+    <Grid>
+        <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill"></Image>
+        <Label x:Name="txtRab" Style="{DynamicResource CustomLabel}"  Content="График работы" Margin="151,229,134,296" Width="751" Height="150" FontSize="30"></Label>
+        <Button Content="Выход" Style="{DynamicResource ButtonStyle}" Margin="370,523,371,70" Height="82" Width="295" Click="Exit"/>
+    </Grid>
+</Page>

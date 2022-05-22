@@ -1,0 +1,29 @@
+﻿<Page x:Class="Book_House.Authorization"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Book_House"
+      mc:Ignorable="d"
+      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+      d:DesignHeight="675" d:DesignWidth="1036"
+      Title="Authorization">
+    <Grid>
+        <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill"></Image>
+        <Label Content="Пользователь:" Style="{DynamicResource CustomLabel}" Margin="232,154,623,487" VerticalAlignment="Center" HorizontalAlignment="Center" Width="181"></Label>
+        <Label Content="Пароль:" Style="{DynamicResource CustomLabel}" Margin="313,300,623,342" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100"></Label>
+        <PasswordBox x:Name="PasswordBoxx" Margin="418,300,270,340"></PasswordBox>
+        <controls:AutoCompleteBox Margin="415,154,273,484" RenderTransformOrigin="0.5,0.5" Populating="Populating" x:Name="outText">
+            <controls:AutoCompleteBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.363"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.744"/>
+                </TransformGroup>
+            </controls:AutoCompleteBox.RenderTransform>
+        </controls:AutoCompleteBox>
+        <Button Content="Войти" Style="{DynamicResource ButtonStyle}" Margin="418,411,482,214" Height="50" Width="136" Click="Войти"></Button>
+        <Button Content="Отмена" Style="{DynamicResource ButtonStyle}" Margin="630,411,270,214" Height="50" Width="136" Click="Exit"></Button>
+    </Grid>
+</Page>

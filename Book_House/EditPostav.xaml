@@ -1,0 +1,37 @@
+﻿<Page x:Class="Book_House.EditPostav"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Book_House"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="1036"
+      Title="EditPostav">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="553"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="5"></Image>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="0" Text="Поставщик" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="1" Text="Книга" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="2" Text="Количество" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="3" Text="Сотрудник" FontSize="40"></TextBlock>
+
+        <ComboBox Grid.Column="1" Grid.Row="0" DisplayMemberPath="Наименование" x:Name="поставщик" Margin="40"></ComboBox>
+        <ComboBox Grid.Column="1" Grid.Row="1" DisplayMemberPath="Название" x:Name="Book" Margin="40"></ComboBox>
+        <TextBox Text="{Binding кол_во}" Grid.Column="1" Grid.Row="2" Margin="40" Name="Количество"></TextBox>
+        <TextBlock Grid.Row="3" Grid.Column="1" Style="{DynamicResource CustomFont}"  Name="id_сотрудника" FontSize="20"></TextBlock>
+
+        <Button Content="Сохранить" Grid.Row="4" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="438,40,434,37" Width="164" Grid.ColumnSpan="2"/>
+    </Grid>
+</Page>

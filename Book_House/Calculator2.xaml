@@ -1,0 +1,31 @@
+﻿<Page x:Class="Book_House.Calculator2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Book_House"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="1036"
+      Title="Calculator2">
+    <Grid RenderTransformOrigin="0.327,0.508" x:Name="Calculatorr">
+        <Image Source="Resources/stock-photo-dark-wooden-background-horizontal-planks.jpg" Stretch="Fill"></Image>
+        <TextBlock Style="{DynamicResource CustomFont}" Margin="0,0,221,589" Width="815" Height="86" x:Name="TXT" FontSize="25"></TextBlock>
+        <Button Content="1"  Style="{DynamicResource ButtonStyle}" Margin="67,141,822,435" Width="147" Height="99"></Button>
+        <Button Content="2"  Style="{DynamicResource ButtonStyle}" Margin="326,141,563,435" Width="147" Height="99"/>
+        <Button Content="5"  Style="{DynamicResource ButtonStyle}" Margin="326,281,563,295" Width="147" Height="99" RenderTransformOrigin="0.499,0.151"/>
+        <Button Content="4"  Style="{DynamicResource ButtonStyle}" Margin="67,281,822,295" Width="147" Height="99"/>
+        <Button Content="7"  Style="{DynamicResource ButtonStyle}" Margin="67,412,822,164" Width="147" Height="99"/>
+        <Button Content="8"  Style="{DynamicResource ButtonStyle}" Margin="326,412,563,164" Width="147" Height="99"/>
+        <Button Content="3"  Style="{DynamicResource ButtonStyle}" Margin="594,141,295,435" Width="147" Height="99"/>
+        <Button Content="6"  Style="{DynamicResource ButtonStyle}" Margin="594,281,295,295" Width="147" Height="99"/>
+        <Button Content="9"  Style="{DynamicResource ButtonStyle}" Margin="594,412,295,164" Width="147" Height="99"/>
+        <Button Content="+"  Style="{DynamicResource ButtonStyle}" Margin="824,141,65,435" Width="147" Height="99"/>
+        <Button Content="-"  Style="{DynamicResource ButtonStyle}" Margin="824,281,65,295" Width="147" Height="99"/>
+        <Button Content="*"  Style="{DynamicResource ButtonStyle}" Margin="824,412,65,164" Width="147" Height="99"/>
+        <Button Content="0"  Style="{DynamicResource ButtonStyle}" Margin="67,554,822,22" Width="147" Height="99"/>
+        <Button Content="="  Style="{DynamicResource ButtonStyle}" Margin="326,554,563,22" Width="147" Height="99"/>
+        <Button Content="AC"  Style="{DynamicResource ButtonStyle}" Margin="594,554,295,22" Width="147" Height="99"/>
+        <Button Content="/"  Style="{DynamicResource ButtonStyle}" Margin="824,554,65,22" Width="147" Height="99"/>
+        <Button Content="Выйти"  Style="{DynamicResource ButtonStyle}" Margin="836,0,53,599" Width="147" Height="76" Click="Exit"/>
+    </Grid>
+</Page>

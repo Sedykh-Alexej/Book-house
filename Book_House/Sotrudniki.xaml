@@ -1,0 +1,41 @@
+﻿<Page x:Class="Book_House.Sotrudniki"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Book_House"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="1036"
+      Title="Sotrudniki">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="73"/>
+        </Grid.RowDefinitions>
+        <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="8"></Image>
+        <DataGrid x:Name="DGridSales" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Фамилия}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Имя}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Отчество}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Должности.Должность}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Адрес" Binding="{Binding Адрес}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Телефон}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="График работы" Binding="{Binding График_работы}" Width="*"></DataGridTextColumn>
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Редактировать" Name="BtnEdit" Click="BtnEdit_click" Style="{DynamicResource ButtonStyle}"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <Button Content="Новый сотрудник" Grid.Row="1" HorizontalAlignment="Center" Name="BtnAdd" Click="BtnAdd_click"  Style="{DynamicResource ButtonStyle}" Margin="25,12,782,11" Height="50" Width="229" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Удалить профиль сотрудника" Grid.Row="1" HorizontalAlignment="Center" Name="BtnDelete" Click="BtnDelete_click" Style="{DynamicResource ButtonStyle}" Margin="678,8,10,10" Height="55" Width="348"/>
+        <Button Content="Закрыть" Grid.Row="1" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="380,12,428,11" Height="50" Width="228" RenderTransformOrigin="-0.573,0.866"/>
+    </Grid>
+</Page>

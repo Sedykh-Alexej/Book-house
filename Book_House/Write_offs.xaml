@@ -1,0 +1,31 @@
+﻿<Page x:Class="Book_House.Write_offs"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Book_House"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="1036"
+      Title="Write_offs">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="73"/>
+        </Grid.RowDefinitions>
+        <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.RowSpan="2"></Image>
+        <DataGrid x:Name="DGridPost" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Книга" Binding="{Binding Книги.Название}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Количество}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Фамилия сотрудника" Binding="{Binding Сотрудники.Фамилия}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя сотрудника" Binding="{Binding Сотрудники.Имя}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Отчество сотрудника" Binding="{Binding Сотрудники.Отчество}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Причина" Binding="{Binding Причина}" Width="*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Списать книгу" Grid.Row="1" HorizontalAlignment="Center" Name="BtnAdd" Click="BtnAdd_click"  Style="{DynamicResource ButtonStyle}" Margin="25,12,782,11" Height="50" Width="229" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Удалить запись" Grid.Row="1" HorizontalAlignment="Center" Name="BtnDelete" Click="BtnDelete_click" Style="{DynamicResource ButtonStyle}" Margin="793,10,28,8" Height="55" Width="215"/>
+        <Button Content="Закрыть" Grid.Row="1" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="414,12,394,11" Height="50" Width="228" RenderTransformOrigin="-0.573,0.866"/>
+    </Grid>
+</Page>

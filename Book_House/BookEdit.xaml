@@ -1,0 +1,41 @@
+﻿<Page x:Class="Book_House.BookEdit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Book_House"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="1036"
+      Title="BookEdit">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="553"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="6"></Image>
+        <TextBlock Style="{DynamicResource CustomFont}"  Text="Наименование" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="1" Text="Жанр" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="2" Text="Цена" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="3" Text="Количество" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="4" Text="Комментарий" FontSize="40"></TextBlock>
+
+        <TextBox Text="{Binding Название}" Grid.Column="1" Grid.Row="0" Margin="40" Name="Название"></TextBox>
+        <ComboBox SelectedItem="{Binding Жанры}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Наименование" x:Name="Жанр" Margin="40"></ComboBox>
+        <TextBox Text="{Binding Цена}" Grid.Column="1" Grid.Row="2" Margin="40" Name="Цена"></TextBox>
+        <TextBox Text="{Binding Количество}" Grid.Column="1" Grid.Row="3" Margin="40" Name="Количество"></TextBox>
+        <TextBox Text="{Binding Комментарий}" Grid.Column="1" Grid.Row="4" Margin="40,33,40,17" Name="Комментарий"></TextBox>
+
+        <Button Content="Сохранить" Grid.Row="5" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="449,27,423,27" Width="164" Grid.ColumnSpan="2"/>
+    </Grid>
+</Page>

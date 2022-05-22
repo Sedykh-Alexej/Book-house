@@ -1,0 +1,26 @@
+﻿<Window x:Class="Book_House.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Book_House"
+        mc:Ignorable="d"
+         WindowStyle="None"
+        ResizeMode="NoResize"
+        Title="MainWindow" Height="870" Width="1036">
+    <Grid Cursor="Pen">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="195"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid MouseDown="Drag" Cursor="Pen" Background="Azure">
+            <Image Source="Resources/stock-photo-dark-wooden-background-horizontal-planks.jpg" Stretch="Fill"></Image>
+            <Image Source="Resources/5a1d1fda14de03.2056359715118581380855.png" HorizontalAlignment="Left" Margin="49,0,0,0"></Image>
+            <Image Source="Resources/kisspng-feathers-the-evolution-of-a-natural-miracle-paper-books-and-quill-5aa60df15026c6.5346314415208319853283.png" HorizontalAlignment="Right" Width="239" Margin="0,28,25,0"/>
+            <TextBlock Text="Книжный дом" Style="{DynamicResource CustomFont}"></TextBlock>
+            <Button  Foreground="Red" Style="{DynamicResource ButtonStyle}" Content="x" Margin="1008,0,0,167" FontSize="24" Click="Button_click" Height="28" Width="28"></Button>
+            <Button  Foreground="Red" Style="{DynamicResource ButtonStyle}"  Content="_" Margin="958,0,50,167" FontSize="24" Click="Min_But" Height="28" Width="28" RenderTransformOrigin="0.758,0.19"></Button>
+        </Grid>
+        <Frame Grid.Row="1" Name="Forma" NavigationUIVisibility="Hidden"></Frame>
+    </Grid>
+</Window>

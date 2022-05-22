@@ -1,0 +1,41 @@
+﻿<Page x:Class="Book_House.EditingClients"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Book_House"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="1036"
+      Title="EditingClients">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="553"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="6"></Image>
+        <TextBlock Style="{DynamicResource CustomFont}"  Text="Фамилия" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="1" Text="Имя" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="2" Text="Отчество" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="3" Text="Адрес" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="4" Text="Телефон" FontSize="40"></TextBlock>
+
+        <TextBox Text="{Binding Фамилия}" Grid.Column="1" Grid.Row="0" Margin="40" Name="Фамилия"></TextBox>
+        <TextBox Text="{Binding Имя}" Grid.Column="1" Grid.Row="1" Margin="40" Name="Имя"></TextBox>
+        <TextBox Text="{Binding Отчество}" Grid.Column="1" Grid.Row="2" Margin="40" Name="Отчество"></TextBox>
+        <TextBox Text="{Binding Адрес}" Grid.Column="1" Grid.Row="3" Margin="40" Name="Адрес"></TextBox>
+        <TextBox Text="{Binding Телефон}" Grid.Column="1" Grid.Row="4" Margin="40" Name="Телефон"></TextBox>
+
+        <Button Content="Сохранить" Grid.Row="5" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="448,28,424,26" Width="164" Grid.ColumnSpan="2"/>
+    </Grid>
+</Page>
