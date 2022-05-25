@@ -10,6 +10,7 @@
 
     <Grid>
         <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill"></Image>
+        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Ваш график работы" Margin="347,30,317,556" Width="372" Height="89" FontSize="30"></TextBlock>
         <Label x:Name="txtRab" Style="{DynamicResource CustomLabel}"  Content="График работы" Margin="151,229,134,296" Width="751" Height="150" FontSize="30"></Label>
         <Button Content="Выход" Style="{DynamicResource ButtonStyle}" Margin="370,523,371,70" Height="82" Width="295" Click="Exit"/>
     </Grid>

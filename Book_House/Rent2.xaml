@@ -1,0 +1,30 @@
+﻿<Page x:Class="Book_House.Rent2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Book_House"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="1036"
+      Title="Rent2">
+
+    <Grid>
+        <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill"></Image>
+        <Button Content="Данный момент в аренде" HorizontalAlignment="Center" x:Name="BtnAdd_Copy1" Click="Status"  Style="{DynamicResource ButtonStyle}" Margin="349,2,333,643" Height="30" Width="354" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Просроченные книги" HorizontalAlignment="Center" x:Name="Просроченные" Click="Просроченные_книги"  Style="{DynamicResource ButtonStyle}" Margin="23,2,759,643" Height="30" Width="254" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Все" HorizontalAlignment="Center" Click="Все"  Style="{DynamicResource ButtonStyle}" Margin="772,2,10,643" Height="30" Width="254" RenderTransformOrigin="-0.573,0.866"/>
+        <DataGrid x:Name="DGridRent" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,39,0,89">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Книга" Binding="{Binding Книги.Название}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Фамилия клиента" Binding="{Binding Клиенты.Фамилия}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя клиента" Binding="{Binding Клиенты.Имя}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Отчество клиента" Binding="{Binding Клиенты.Отчество}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата получения" Binding="{Binding Дата_получения}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата возврата" Binding="{Binding Дата_возврата}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Статус1.Название}" Width="*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+     
+        <Button Content="Выход" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="390,614,416,11" Height="50" Width="230" RenderTransformOrigin="-0.573,0.866"/>
+    </Grid>
+</Page>

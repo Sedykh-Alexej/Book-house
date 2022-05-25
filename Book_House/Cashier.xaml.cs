@@ -24,7 +24,7 @@ namespace Book_House
         public Cashier()
         {
             InitializeComponent();
-            txtRab.Content = "Приветствуем вас на рабочем месте " + Manager.IFO + "!";
+            txtRab.Content = "Приветствуем Вас, на рабочем месте, " + Manager.IFO + "!";
         }
 
         private void Calculator(object sender, RoutedEventArgs e)

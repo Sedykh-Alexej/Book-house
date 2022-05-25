@@ -24,7 +24,7 @@ namespace Book_House
         public Chief()
         {
             InitializeComponent();
-            txtRab.Content = "Приветствуем вас на рабочем месте " + Manager.IFO + "!";
+            txtRab.Content = "Приветствуем Вас, на рабочем месте, " + Manager.IFO + "!";
         }
 
         private void Calculator(object sender, RoutedEventArgs e)
@@ -69,7 +69,7 @@ namespace Book_House
 
         private void Otchet(object sender, RoutedEventArgs e)
         {
-            Manager.Forma.Navigate(new Otchet());
+            Manager.Forma.Navigate(new Rent2());
         }
     }
 }

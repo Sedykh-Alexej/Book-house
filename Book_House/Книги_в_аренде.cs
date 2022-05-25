@@ -21,6 +21,8 @@ namespace Book_House
         public System.DateTime Дата_получения { get; set; }
         public System.DateTime Дата_возврата { get; set; }
         public int Статус { get; set; }
+        public string Фактическая_дата_возврата { get; set; }
+        public Nullable<int> Количество { get; set; }
     
         public virtual Клиенты Клиенты { get; set; }
         public virtual Книги Книги { get; set; }

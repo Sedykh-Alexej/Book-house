@@ -14,7 +14,8 @@
             <RowDefinition Height="73"/>
         </Grid.RowDefinitions>
         <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.RowSpan="2"></Image>
-        <DataGrid x:Name="DGridPost" AutoGenerateColumns="False" IsReadOnly="True">
+        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Поставки книг" Margin="392,0,340,560" Width="304" Height="42" FontSize="30"></TextBlock>
+        <DataGrid x:Name="DGridPost" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,47,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Поставщик" Binding="{Binding Поставщики.Наименование}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Книга" Binding="{Binding Книги.Название}" Width="*"></DataGridTextColumn>

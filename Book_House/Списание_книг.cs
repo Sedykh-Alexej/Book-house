@@ -32,6 +32,5 @@ namespace Book_House
             this.Причина = Причина;
         }
         public Списание_книг() { }
-
     }
 }

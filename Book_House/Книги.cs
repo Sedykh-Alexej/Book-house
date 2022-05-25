@@ -27,7 +27,8 @@ namespace Book_House
         public int Жанр { get; set; }
         public int Цена { get; set; }
         public string Комментарий { get; set; }
-        public int Количество { get; set; }
+        public Nullable<int> Количество { get; set; }
+        public string Автор { get; set; }
     
         public virtual Жанры Жанры { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

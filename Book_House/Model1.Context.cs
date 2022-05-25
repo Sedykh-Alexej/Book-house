@@ -16,7 +16,6 @@ namespace Book_House
     public partial class Book_houseEntities : DbContext
     {
         public static Book_houseEntities _context;
-
         public Book_houseEntities()
             : base("name=Book_houseEntities")
         {

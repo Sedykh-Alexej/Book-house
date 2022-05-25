@@ -31,7 +31,7 @@ namespace Book_House
                 namelist = new List<string>();
                 foreach (var item in db.Сотрудники)
                 {
-                    namelist.Add(item.Имя + " " + item.Отчество + " " + item.Фамилия);
+                    namelist.Add(item.Фамилия + " " + item.Имя + " " + item.Отчество);
                 }
             }
             catch (Exception er)
@@ -73,12 +73,12 @@ namespace Book_House
         {
             try
             {
-                var Сотрудник = db.Сотрудники.Where(d => (d.Имя.ToLower() + " " + d.Отчество.ToLower() + " " + d.Фамилия.ToLower()).Equals(outText.Text.ToLower())
+                var Сотрудник = db.Сотрудники.Where(d => (d.Фамилия.ToLower() + " " + d.Имя.ToLower() + " " + d.Отчество.ToLower()).Equals(outText.Text.ToLower())
                 && d.Пароль == PasswordBoxx.Password).FirstOrDefault();
                 if (Сотрудник != null)
                 {
                     Manager.IDSotr = Сотрудник.id;
-                    Manager.IFO = Сотрудник.Имя + " " + Сотрудник.Отчество + " " + Сотрудник.Фамилия;
+                    Manager.IFO = Сотрудник.Фамилия + " " + Сотрудник.Имя + " " + Сотрудник.Отчество;
                     if (Сотрудник.Должность == 1)
                     {
                         var uri = new Uri(Сотрудник.Стиль, UriKind.Relative);

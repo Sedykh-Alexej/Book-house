@@ -19,6 +19,6 @@
         <Button Content="Выйти из учётной записи" Click="Exit" Style="{DynamicResource ButtonStyle}" Margin="380,579,343,46" Height="50" Width="313"></Button>
         <Button Content="Изменение пароля"  Style="{DynamicResource ButtonStyle}" Margin="32,547,766,78" Height="50" Width="238" Click="EditParol"/>
         <Button Content="Сотрудники"  Style="{DynamicResource ButtonStyle}" Margin="539,194,217,415" Width="280" Height="66" Click="Sotrudniki"/>
-        <Button Content="Отчёт"  Style="{DynamicResource ButtonStyle}" Margin="539,317,217,292" Width="280" Height="66" Click="Otchet"/>
+        <Button Content="Отчёт по продажам"  Style="{DynamicResource ButtonStyle}" Margin="539,317,217,292" Width="280" Height="66" Click="Otchet"/>
     </Grid>
 </Page>

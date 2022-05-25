@@ -49,7 +49,8 @@
           <Property Name="Жанр" Type="int" Nullable="false" />
           <Property Name="Цена" Type="int" Nullable="false" />
           <Property Name="Комментарий" Type="varchar" MaxLength="50" />
-          <Property Name="Количество" Type="int" Nullable="false" />
+          <Property Name="Количество" Type="int" />
+          <Property Name="Автор" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Книги_в_аренде">
           <Key>
@@ -62,6 +63,8 @@
           <Property Name="Дата_получения" Type="date" Nullable="false" />
           <Property Name="Дата_возврата" Type="date" Nullable="false" />
           <Property Name="Статус" Type="int" Nullable="false" />
+          <Property Name="Фактическая_дата_возврата" Type="varchar" MaxLength="50" />
+          <Property Name="Количество" Type="int" />
         </EntityType>
         <EntityType Name="Поставки">
           <Key>
@@ -356,7 +359,8 @@
           <Property Name="Жанр" Type="Int32" Nullable="false" />
           <Property Name="Цена" Type="Int32" Nullable="false" />
           <Property Name="Комментарий" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Количество" Type="Int32" Nullable="false" />
+          <Property Name="Количество" Type="Int32" />
+          <Property Name="Автор" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Жанры" Relationship="Self.FK_Книги_Жанры" FromRole="Книги" ToRole="Жанры" />
           <NavigationProperty Name="Книги_в_аренде" Relationship="Self.FK_Книги_в_аренде_Книги" FromRole="Книги" ToRole="Книги_в_аренде" />
           <NavigationProperty Name="Поставки" Relationship="Self.FK_Поставки_Книги" FromRole="Книги" ToRole="Поставки" />
@@ -373,6 +377,8 @@
           <Property Name="Дата_получения" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Дата_возврата" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Статус" Type="Int32" Nullable="false" />
+          <Property Name="Фактическая_дата_возврата" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Количество" Type="Int32" />
           <NavigationProperty Name="Клиенты" Relationship="Self.FK_Книги_в_аренде_Клиенты" FromRole="Книги_в_аренде" ToRole="Клиенты" />
           <NavigationProperty Name="Книги" Relationship="Self.FK_Книги_в_аренде_Книги" FromRole="Книги_в_аренде" ToRole="Книги" />
           <NavigationProperty Name="Сотрудники" Relationship="Self.FK_Книги_в_аренде_Сотрудники" FromRole="Книги_в_аренде" ToRole="Сотрудники" />
@@ -684,6 +690,7 @@
                 <ScalarProperty Name="Цена" ColumnName="Цена" />
                 <ScalarProperty Name="Комментарий" ColumnName="Комментарий" />
                 <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="Автор" ColumnName="Автор" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -697,6 +704,8 @@
                 <ScalarProperty Name="Дата_получения" ColumnName="Дата_получения" />
                 <ScalarProperty Name="Дата_возврата" ColumnName="Дата_возврата" />
                 <ScalarProperty Name="Статус" ColumnName="Статус" />
+                <ScalarProperty Name="Фактическая_дата_возврата" ColumnName="Фактическая_дата_возврата" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

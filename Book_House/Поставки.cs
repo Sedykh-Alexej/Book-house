@@ -35,6 +35,5 @@ namespace Book_House
             this.Дата_поставки = Дата_поставки;
         }
         public Поставки() { }
-
     }
 }

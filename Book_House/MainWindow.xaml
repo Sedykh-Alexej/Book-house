@@ -7,7 +7,7 @@
         mc:Ignorable="d"
          WindowStyle="None"
         ResizeMode="NoResize"
-        Title="MainWindow" Height="870" Width="1036">
+        Title="Книжный дом" Height="870" Width="1036">
     <Grid Cursor="Pen">
         <Grid.RowDefinitions>
             <RowDefinition Height="195"/>

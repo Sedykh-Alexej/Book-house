@@ -14,7 +14,8 @@
             <RowDefinition Height="73"/>
         </Grid.RowDefinitions>
         <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="8"></Image>
-        <DataGrid x:Name="DGridSales" AutoGenerateColumns="False" IsReadOnly="True">
+        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Сотрудники" Margin="413,0,395,557" Width="228" Height="45" FontSize="30"></TextBlock>
+        <DataGrid x:Name="DGridSales" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,50,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding Фамилия}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Имя" Binding="{Binding Имя}" Width="*"></DataGridTextColumn>
@@ -36,6 +37,6 @@
 
         <Button Content="Новый сотрудник" Grid.Row="1" HorizontalAlignment="Center" Name="BtnAdd" Click="BtnAdd_click"  Style="{DynamicResource ButtonStyle}" Margin="25,12,782,11" Height="50" Width="229" RenderTransformOrigin="-0.573,0.866"/>
         <Button Content="Удалить профиль сотрудника" Grid.Row="1" HorizontalAlignment="Center" Name="BtnDelete" Click="BtnDelete_click" Style="{DynamicResource ButtonStyle}" Margin="678,8,10,10" Height="55" Width="348"/>
-        <Button Content="Закрыть" Grid.Row="1" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="380,12,428,11" Height="50" Width="228" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Закрыть" Grid.Row="1" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="395,12,413,11" Height="50" Width="228" RenderTransformOrigin="-0.573,0.866"/>
     </Grid>
 </Page>

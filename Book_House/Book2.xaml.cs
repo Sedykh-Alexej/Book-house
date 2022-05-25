@@ -24,6 +24,7 @@ namespace Book_House
         {
             InitializeComponent();
             Жанр.ItemsSource = Book_houseEntities.GetContext().Жанры.ToList();
+            Автор.ItemsSource = Book_houseEntities.GetContext().Книги.ToList();
         }
 
         private void Exit(object sender, RoutedEventArgs e)
@@ -48,6 +49,34 @@ namespace Book_House
             {
                 var Жанрр = Book_houseEntities.GetContext().Жанры.Where(d => d.Наименование == Жанр.Text).FirstOrDefault();
                 DGridBook.ItemsSource = Book_houseEntities.GetContext().Книги.Where(d => d.Жанр == Жанрр.id).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void Все(object sender, RoutedEventArgs e)
+        {
+            DGridBook.ItemsSource = Book_houseEntities.GetContext().Книги.ToList();
+        }
+
+        private void Обновить2(object sender, RoutedEventArgs e)
+        {
+            StringBuilder errors = new StringBuilder();
+            if (string.IsNullOrWhiteSpace(Автор.Text))
+                errors.AppendLine("Укажите автора");
+
+
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
+                return;
+            }
+
+            try
+            {
+                DGridBook.ItemsSource = Book_houseEntities.GetContext().Книги.Where(d => d.Автор == Автор.Text).ToList();
             }
             catch (Exception ex)
             {

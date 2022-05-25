@@ -10,7 +10,15 @@
 
     <Grid>
         <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill"></Image>
-        <DataGrid x:Name="DGridClient" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,0,0,142">
+        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Регистрация клиента" Margin="324,0,340,617" Width="372" Height="58" FontSize="30"></TextBlock>
+        <Label  Style="{DynamicResource CustomLabel}"  Content="Введите фамилию:" Margin="28,37,776,599" Width="232" Height="39" FontSize="20"></Label>
+        <ComboBox DisplayMemberPath="Фамилия" x:Name="Фамилия" Margin="262,42,527,604"/>
+        <Label  Style="{DynamicResource CustomLabel}"  Content="Введите имя:" Margin="96,73,776,563" Width="164" Height="39" FontSize="20" RenderTransformOrigin="-0.096,0.808"></Label>
+        <ComboBox DisplayMemberPath="Имя" x:Name="Имя" Margin="265,78,527,563"/>
+        <Label Style="{DynamicResource CustomLabel}"  Content="Введите отчество:" Margin="42,112,731,524" Width="263" Height="39" FontSize="20"></Label>
+        <ComboBox DisplayMemberPath="Отчество" x:Name="Отчество" Margin="265,117,527,526"/>
+
+        <DataGrid x:Name="DGridClient" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,158,0,70">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding Фамилия}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Имя" Binding="{Binding Имя}" Width="*"></DataGridTextColumn>
@@ -27,8 +35,10 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="Добавить" HorizontalAlignment="Center" Name="BtnAdd" Click="BtnAdd_click"  Style="{DynamicResource ButtonStyle}" Margin="40,578,767,47" Height="50" Width="229" RenderTransformOrigin="-0.573,0.866"/>
-        <Button Content="Удалить" HorizontalAlignment="Center" Name="BtnDelete" Click="BtnDelete_click" Style="{DynamicResource ButtonStyle}" Margin="784,573,37,47" Height="55" Width="215"/>
-        <Button Content="Выход" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="389,578,418,47" Height="50" Width="229" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Добавить" HorizontalAlignment="Center" Name="BtnAdd" Click="BtnAdd_click"  Style="{DynamicResource ButtonStyle}" Margin="42,615,765,10" Height="50" Width="229" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Удалить" HorizontalAlignment="Center" Name="BtnDelete" Click="BtnDelete_click" Style="{DynamicResource ButtonStyle}" Margin="782,610,38,10" Height="55" Width="216"/>
+        <Button Content="Выход" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="407,615,400,10" Height="50" Width="229" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Найти клиента" HorizontalAlignment="Center" x:Name="Updatee" Click="Update"  Style="{DynamicResource ButtonStyle}"  Height="41" Width="426" Margin="598,49,12,585"/>
+        <Button Content="Вевести всех клиентов" HorizontalAlignment="Center" x:Name="Всее" Click="Все"  Style="{DynamicResource ButtonStyle}"  Height="39" Width="428" Margin="598,109,10,527"/>
     </Grid>
 </Page>

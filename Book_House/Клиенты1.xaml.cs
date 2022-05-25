@@ -23,7 +23,9 @@ namespace Book_House
         public Клиенты1()
         {
             InitializeComponent();
-            DGridClient.ItemsSource = Book_houseEntities.GetContext().Клиенты.ToList();
+            Фамилия.ItemsSource = Book_houseEntities.GetContext().Клиенты.ToList();
+            Имя.ItemsSource = Book_houseEntities.GetContext().Клиенты.ToList();
+            Отчество.ItemsSource = Book_houseEntities.GetContext().Клиенты.ToList();
         }
 
         private void BtnEdit_click(object sender, RoutedEventArgs e)
@@ -61,6 +63,47 @@ namespace Book_House
         private void Exit(object sender, RoutedEventArgs e)
         {
             Manager.Forma.Navigate(new Cashier());
+        }
+
+        private void Все(object sender, RoutedEventArgs e)
+        {
+            DGridClient.ItemsSource = Book_houseEntities.GetContext().Клиенты.ToList();
+        }
+
+        private void Update(object sender, RoutedEventArgs e)
+        {
+            StringBuilder errors = new StringBuilder();
+            if (string.IsNullOrWhiteSpace(Фамилия.Text))
+                errors.AppendLine("Укажите Фамилию");
+            if (string.IsNullOrWhiteSpace(Имя.Text))
+                errors.AppendLine("Укажите имя");
+            if (string.IsNullOrWhiteSpace(Отчество.Text))
+                errors.AppendLine("Укажите отчество");
+
+
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
+                return;
+            }
+
+            try
+            {
+                var Клиент = Book_houseEntities.GetContext().Клиенты.Where(d => d.Фамилия == Фамилия.Text && d.Имя == Имя.Text && d.Отчество == Отчество.Text).FirstOrDefault();
+                if (Клиент != null)
+                {
+                    DGridClient.ItemsSource = Book_houseEntities.GetContext().Клиенты.Where(d => d.id == Клиент.id).ToList();
+                }
+                else {
+                    MessageBox.Show("Не существует клиента с данным именем, фамилией и отчеством");
+                }
+            }
+
+                
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }
