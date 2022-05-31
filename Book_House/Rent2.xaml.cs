@@ -12,9 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 using Excel = Microsoft.Office.Interop.Excel;
-using Microsoft.Office.Interop.Excel;
 
 
 namespace Book_House
@@ -22,7 +20,7 @@ namespace Book_House
     /// <summary>
     /// Логика взаимодействия для Rent2.xaml
     /// </summary>
-    public partial class Rent2 : System.Windows.Controls.Page
+    public partial class Rent2 : Page
     {
         public Rent2()
         {
@@ -65,26 +63,54 @@ namespace Book_House
 
         private void Export(object sender, RoutedEventArgs e)
         {
-            Excel.Application excel = new Excel.Application();
-            excel.Visible = true; 
-            Workbook workbook = excel.Workbooks.Add(System.Reflection.Missing.Value);
-            Worksheet sheet1 = (Worksheet)workbook.Sheets[1];
+            var Member = Book_houseEntities.GetContext().Книги_в_аренде.ToList().OrderBy(p => p.id_Сотрудника).ToList();
+            var application = new Excel.Application();
+            application.SheetsInNewWorkbook = Member.Count();
+            Excel.Workbook workbook = application.Workbooks.Add(Type.Missing);
 
-            for (int j = 0; j < DGridRent.Columns.Count; j++) 
+            int startRowIndex = 1;
+            for (int i = 0; i < Member.Count(); i++)
             {
-                Range myRange = (Range)sheet1.Cells[1, j + 1];
-                sheet1.Cells[1, j + 1].Font.Bold = true; 
-                sheet1.Columns[j + 1].ColumnWidth = 15; 
-                myRange.Value2 = DGridRent.Columns[j].Header;
-            }
-            for (int i = 0; i < DGridRent.Columns.Count; i++)
-            { 
-                for (int j = 0; j < DGridRent.Items.Count; j++)
+                Excel.Worksheet worksheet = application.Worksheets.Item[i + 1];
+                worksheet.Name = Member[i].Сотрудники.Фамилия + " " + Member[i].Сотрудники.Имя + Member[i].Сотрудники.Отчество;
+
+                worksheet.Cells[1][startRowIndex] = "Дата получения";
+                worksheet.Cells[1][startRowIndex] = "Дата возврата";
+                worksheet.Cells[1][startRowIndex] = "Фактическая дата возврата";
+                worksheet.Cells[1][startRowIndex] = "Фамилия клиента";
+                worksheet.Cells[1][startRowIndex] = "Имя клиента";
+                worksheet.Cells[1][startRowIndex] = "Отчество клиента";
+                worksheet.Cells[1][startRowIndex] = "Книга";
+                worksheet.Cells[1][startRowIndex] = "Количество";
+                startRowIndex++;
+
+                var Categories = Book_houseEntities.GetContext().Книги_в_аренде.ToList();
+                foreach (var groupCategory in Categories)
                 {
-                    TextBlock b = DGridRent.Columns[i].GetCellContent(DGridRent.Items[j]) as TextBlock;
-                    Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[j + 2, i + 1];
-                    myRange.Value2 = b.Text;
+                    Excel.Range headerRange = worksheet.Range[worksheet.Cells[1][startRowIndex], worksheet.Cells[8][startRowIndex]];
+                    headerRange.Merge();
+                    headerRange.Value = groupCategory.id;
+                    headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    headerRange.Font.Italic = true;
+
+                    startRowIndex++;
+
+                    foreach (var payment in Categories)
+                    {
+                        worksheet.Cells[1][startRowIndex] = payment.Дата_получения.ToString("dd.MM.yyyy");
+                        worksheet.Cells[2][startRowIndex] = payment.Дата_возврата.ToString("dd.MM.yyyy");
+                        worksheet.Cells[3][startRowIndex] = payment.Фактическая_дата_возврата;
+                        worksheet.Cells[4][startRowIndex] = payment.Клиенты.Фамилия;
+                        worksheet.Cells[5][startRowIndex] = payment.Клиенты.Имя;
+                        worksheet.Cells[6][startRowIndex] = payment.Клиенты.Отчество;
+                        worksheet.Cells[7][startRowIndex] = payment.Книги.Название;
+                        worksheet.Cells[8][startRowIndex] = payment.Количество;
+                    }
                 }
+
+
+
+
             }
         }
     }
