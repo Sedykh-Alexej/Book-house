@@ -36,7 +36,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Фамилия" Type="varchar" MaxLength="50" />
           <Property Name="Имя" Type="varchar" MaxLength="50" />
-          <Property Name="Отчество" Type="varchar" MaxLength="50" />
+          <Property Name="Отчество" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Адрес" Type="varchar" MaxLength="50" />
           <Property Name="Телефон" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -63,7 +63,7 @@
           <Property Name="Дата_получения" Type="date" Nullable="false" />
           <Property Name="Дата_возврата" Type="date" Nullable="false" />
           <Property Name="Статус" Type="int" Nullable="false" />
-          <Property Name="Фактическая_дата_возврата" Type="varchar" MaxLength="50" />
+          <Property Name="Фактическая_дата_возврата" Type="date" />
           <Property Name="Количество" Type="int" />
         </EntityType>
         <EntityType Name="Поставки">
@@ -74,7 +74,7 @@
           <Property Name="id_Поставщика" Type="int" />
           <Property Name="id_Книги" Type="int" />
           <Property Name="Количество" Type="int" Nullable="false" />
-          <Property Name="Дата_поставки" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Дата_поставки" Type="date" Nullable="false" />
           <Property Name="id_сотрудника" Type="int" />
         </EntityType>
         <EntityType Name="Поставщики">
@@ -93,7 +93,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Фамилия" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Имя" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Отчество" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Отчество" Type="varchar" MaxLength="50" />
           <Property Name="Должность" Type="int" Nullable="false" />
           <Property Name="Адрес" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Телефон" Type="varchar" MaxLength="50" Nullable="false" />
@@ -345,7 +345,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Книги_в_аренде" Relationship="Self.FK_Книги_в_аренде_Клиенты" FromRole="Клиенты" ToRole="Книги_в_аренде" />
@@ -377,7 +377,7 @@
           <Property Name="Дата_получения" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Дата_возврата" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Статус" Type="Int32" Nullable="false" />
-          <Property Name="Фактическая_дата_возврата" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Фактическая_дата_возврата" Type="DateTime" Precision="0" />
           <Property Name="Количество" Type="Int32" />
           <NavigationProperty Name="Клиенты" Relationship="Self.FK_Книги_в_аренде_Клиенты" FromRole="Книги_в_аренде" ToRole="Клиенты" />
           <NavigationProperty Name="Книги" Relationship="Self.FK_Книги_в_аренде_Книги" FromRole="Книги_в_аренде" ToRole="Книги" />
@@ -392,7 +392,7 @@
           <Property Name="id_Поставщика" Type="Int32" />
           <Property Name="id_Книги" Type="Int32" />
           <Property Name="Количество" Type="Int32" Nullable="false" />
-          <Property Name="Дата_поставки" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Дата_поставки" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="id_сотрудника" Type="Int32" />
           <NavigationProperty Name="Книги" Relationship="Self.FK_Поставки_Книги" FromRole="Поставки" ToRole="Книги" />
           <NavigationProperty Name="Поставщики" Relationship="Self.FK_Поставки_Поставщики" FromRole="Поставки" ToRole="Поставщики" />
@@ -415,7 +415,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Должность" Type="Int32" Nullable="false" />
           <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />

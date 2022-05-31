@@ -30,12 +30,12 @@
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="3" Text="Адрес" FontSize="40"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="4" Text="Телефон" FontSize="40"></TextBlock>
 
-        <TextBox Text="{Binding Фамилия}" Grid.Column="1" Grid.Row="0" Margin="40" Name="Фамилия"></TextBox>
-        <TextBox Text="{Binding Имя}" Grid.Column="1" Grid.Row="1" Margin="40" Name="Имя"></TextBox>
-        <TextBox Text="{Binding Отчество}" Grid.Column="1" Grid.Row="2" Margin="40" Name="Отчество"></TextBox>
-        <TextBox Text="{Binding Адрес}" Grid.Column="1" Grid.Row="3" Margin="40" Name="Адрес"></TextBox>
-        <TextBox Text="{Binding Телефон}" Grid.Column="1" Grid.Row="4" Margin="40" Name="Телефон"></TextBox>
+        <TextBox Text="{Binding Фамилия}" Grid.Column="1" Grid.Row="0" Margin="40" Name="Фамилия" SpellCheck.IsEnabled="True" Language="ru-ru"></TextBox>
+        <TextBox Text="{Binding Имя}" Grid.Column="1" Grid.Row="1" Margin="40" Name="Имя" SpellCheck.IsEnabled="True" Language="ru-ru"></TextBox>
+        <TextBox Text="{Binding Отчество}" Grid.Column="1" Grid.Row="2" Margin="40" Name="Отчество" SpellCheck.IsEnabled="True" Language="ru-ru"></TextBox>
+        <TextBox Text="{Binding Адрес}" Grid.Column="1" Grid.Row="3" Margin="40" Name="Адрес" SpellCheck.IsEnabled="True" Language="ru-ru"></TextBox>
+        <TextBox  Text="{Binding Телефон}" Grid.Column="1" Grid.Row="4" Margin="40" Name="Телефон"></TextBox>
 
-        <Button Content="Сохранить" Grid.Row="5" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="448,28,424,26" Width="164" Grid.ColumnSpan="2"/>
+        <Button Content="Сохранить" Grid.Row="5" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="50" Margin="371,36,437,26" Width="228" Grid.ColumnSpan="2"/>
     </Grid>
 </Page>

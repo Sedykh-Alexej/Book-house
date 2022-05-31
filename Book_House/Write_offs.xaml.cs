@@ -23,7 +23,8 @@ namespace Book_House
         public Write_offs()
         {
             InitializeComponent();
-            DGridPost.ItemsSource = Book_houseEntities.GetContext().Списание_книг.ToList();
+            Book.ItemsSource = Book_houseEntities.GetContext().Книги.ToList();
+
         }
 
         private void BtnAdd_click(object sender, RoutedEventArgs e)
@@ -58,6 +59,35 @@ namespace Book_House
         private void Exit(object sender, RoutedEventArgs e)
         {
             Manager.Forma.Navigate(new Accountant());
+        }
+
+        private void Все(object sender, RoutedEventArgs e)
+        {
+            DGridPost.ItemsSource = Book_houseEntities.GetContext().Списание_книг.ToList();
+        }
+
+        private void Обновить(object sender, RoutedEventArgs e)
+        {
+            StringBuilder errors = new StringBuilder();
+            if (string.IsNullOrWhiteSpace(Book.Text))
+                errors.AppendLine("Укажите книгу");
+
+
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
+                return;
+            }
+
+            try
+            {
+                var Книга = Book_houseEntities.GetContext().Книги.Where(d => d.Название == Book.Text).FirstOrDefault();
+                DGridPost.ItemsSource = Book_houseEntities.GetContext().Списание_книг.Where(d => d.id_Книги == Книга.id).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }

@@ -26,33 +26,24 @@
         <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="6"></Image>
         <TextBlock Style="{DynamicResource CustomFont}"  Text="Сотрудник" FontSize="40"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="1" Text="Клиент" FontSize="40"></TextBlock>
-        <TextBox Text="{Binding кол_во}" Grid.Column="1" Grid.Row="3" Margin="40" Name="Количество"></TextBox>
+        <TextBox Text="{Binding Количество}" Grid.Column="1" Grid.Row="3" Margin="40" Name="Количество"></TextBox>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="2" Text="Книга" FontSize="40" Height="47" Margin="175,34,172,32" Width="136"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="4" Text="Статус" FontSize="40" Margin="174,31,161,31" Height="50" Width="148"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" FontSize="20" Height="30" Margin="132,10,304,73" Width="117" Grid.Column="1" Grid.Row="1" Text="Фамилия:"></TextBlock>
-        <TextBlock Style="{DynamicResource CustomFont}" FontSize="20" Height="23" Margin="183,45,304,45" Width="66" Grid.Column="1" Grid.Row="1" Text="Имя:"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" FontSize="20" Height="23" Margin="183,41,304,49" Width="66" Grid.Column="1" Grid.Row="1" Text="Имя:" RenderTransformOrigin="0.515,0.304"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" FontSize="20" Height="30" Margin="132,73,304,10" Width="117" Grid.Column="1" Grid.Row="1" Text="Отчество:"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="0" Grid.Column="1" Text="" FontSize="30" x:Name="Сотрудник"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="3" Text="Количество" FontSize="40"></TextBlock>
 
-        <ComboBox SelectedItem="{Binding Клиенты}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Фамилия" x:Name="КлиентФамилия" Margin="249,10,40,84"></ComboBox>
-        <ComboBox SelectedItem="{Binding Клиенты}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Имя" x:Name="КлиентИмя" Margin="249,51,40,46" RenderTransformOrigin="0.5,0.5">
-            <ComboBox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleY="-1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </ComboBox.RenderTransform>
-        </ComboBox>
-        <ComboBox SelectedItem="{Binding Клиенты}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Отчество" x:Name="КлиентОтчество" Margin="249,84,40,10"></ComboBox>
+        <ComboBox SelectedItem="{Binding Клиенты}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Фамилия" x:Name="КлиентФамилия" Margin="249,10,40,77"></ComboBox>
+        <ComboBox SelectedItem="{Binding Клиенты}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Имя" x:Name="КлиентИмя" Margin="249,45,40,45" RenderTransformOrigin="0.5,0.5"/>
+        <ComboBox SelectedItem="{Binding Клиенты}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Отчество" x:Name="КлиентОтчество" Margin="249,73,40,10"></ComboBox>
         <ComboBox SelectedItem="{Binding Книги}" Grid.Column="1" Grid.Row="2" DisplayMemberPath="Название" Margin="40,44,40,41" x:Name="Книга"></ComboBox>
 
 
         <Button Content="Сохранить" Grid.Row="6" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="457,27,415,27" Width="164" Grid.ColumnSpan="2"/>
         <Button Content="Изменить статус" Grid.Row="4" x:Name="Edit" Click="EditStatus" Style="{DynamicResource ButtonStyle}" Height="43" Margin="40,36,304,33" Width="209" Grid.Column="1"/>
-        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="4" Text="" FontSize="25" Margin="277,47,127,42" Grid.Column="1" x:Name="Статус"/>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="4" Text="" FontSize="25" Margin="266,36,19,39" Grid.Column="1" x:Name="Статус" Width="268" Height="37"/>
 
     </Grid>
 </Page>

@@ -30,7 +30,7 @@
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="3" Text="Количество" FontSize="40"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="4" Text="Комментарий" FontSize="40"></TextBlock>
 
-        <TextBox Text="{Binding Название}" Grid.Column="1" Grid.Row="0" Margin="40" Name="Название"></TextBox>
+        <TextBox Text="{Binding Название}" Grid.Column="1" Grid.Row="0" Margin="40" Name="Название" SpellCheck.IsEnabled="True" Language="ru-ru"></TextBox>
         <ComboBox SelectedItem="{Binding Жанры}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Наименование" x:Name="Жанр" Margin="40"></ComboBox>
         <TextBox Text="{Binding Цена}" Grid.Column="1" Grid.Row="2" Margin="40" Name="Цена"></TextBox>
         <TextBox Text="{Binding Количество}" Grid.Column="1" Grid.Row="3" Margin="40" Name="Количество"></TextBox>

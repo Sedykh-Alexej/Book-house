@@ -32,13 +32,13 @@
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="5" Text="Телефон" FontSize="40"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="6" Text="График работы" FontSize="40"></TextBlock>
 
-        <TextBox Text="{Binding Фамилия}" Grid.Column="1" Grid.Row="0" Margin="40,20,40,19" Name="Фамилия"></TextBox>
+        <TextBox Text="{Binding Фамилия}" Grid.Column="1" Grid.Row="0" Margin="40,20,40,19" Name="Фамилия" SpellCheck.IsEnabled="True" Language="ru-ru"></TextBox>
         <ComboBox SelectedItem="{Binding Должности}" Grid.Column="1" Grid.Row="3" DisplayMemberPath="Должность" x:Name="Должность" Margin="40,19"></ComboBox>
-        <TextBox Text="{Binding  Имя}" Grid.Column="1" Grid.Row="1" Margin="40,31,40,20" Name="Имя"></TextBox>
-        <TextBox Text="{Binding Отчество}" Grid.Column="1" Grid.Row="2" Margin="40,30,40,19" Name="Отчество"></TextBox>
-        <TextBox Text="{Binding Адрес}" Grid.Column="1" Grid.Row="4" Margin="40,30,40,19" Name="Адрес"></TextBox>
+        <TextBox Text="{Binding  Имя}" Grid.Column="1" Grid.Row="1" Margin="40,31,40,20" Name="Имя" SpellCheck.IsEnabled="True" Language="ru-ru"></TextBox>
+        <TextBox Text="{Binding Отчество}" Grid.Column="1" Grid.Row="2" Margin="40,30,40,19" Name="Отчество" SpellCheck.IsEnabled="True" Language="ru-ru"></TextBox>
+        <TextBox Text="{Binding Адрес}" Grid.Column="1" Grid.Row="4" Margin="40,30,40,19" Name="Адрес" SpellCheck.IsEnabled="True" Language="ru-ru"></TextBox>
         <TextBox Text="{Binding Телефон}" Grid.Column="1" Grid.Row="5" Margin="40,30,40,19" Name="Телефон"></TextBox>
-        <TextBox Text="{Binding График_работы}" Grid.Column="1" Grid.Row="6" Margin="40,30,40,19" Name="График"></TextBox>
+        <TextBox Text="{Binding График_работы}" Grid.Column="1" Grid.Row="6" Margin="40,30,40,19" Name="График" SpellCheck.IsEnabled="True" Language="ru-ru"></TextBox>
 
         <Button Content="Сохранить" Grid.Row="7" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="442,16,430,10" Width="164" RenderTransformOrigin="-0.119,0.603" Grid.ColumnSpan="2"/>
     </Grid>

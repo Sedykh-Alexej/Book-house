@@ -56,6 +56,12 @@ namespace Book_House
 
             try
             {
+                try
+                {
+                    long Phone = Convert.ToInt64(Телефон.Text);
+                    _currentПоставщики.Телефон = Phone.ToString("+#-###-###-##-##");
+                }
+                catch (Exception) { }
                 Book_houseEntities.GetContext().SaveChanges();
                 Manager.Forma.Navigate(new Post());
             }

@@ -40,18 +40,21 @@ namespace Book_House
                 errors.AppendLine("Укажите поставщика");
 
 
+           
+
+            int Кол_во = Convert.ToInt32(Количество.Text);
+            if (Кол_во <= 0)
+                errors.AppendLine("Количество не может быть меньше 0");
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
                 return;
             }
-
-            int Кол_во = Convert.ToInt32(Количество.Text);
             DateTime thisDay = DateTime.Today;
             var Книга = Book_houseEntities.GetContext().Книги.Where(d => d.Название == Book.Text).FirstOrDefault();
             Книга.Количество += Кол_во;                       
             var Поставщик = Book_houseEntities.GetContext().Поставщики.Where(d => d.Наименование == поставщик.Text).FirstOrDefault();
-            Поставки поставка = new Поставки(0, Поставщик.id, Книга.id, Кол_во, thisDay.ToString("d"), Manager.IDSotr);
+            Поставки поставка = new Поставки(0, Поставщик.id, Книга.id, Кол_во, thisDay, Manager.IDSotr);
             Book_houseEntities.GetContext().Поставки.Add(поставка);
 
             try

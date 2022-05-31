@@ -34,14 +34,10 @@ namespace Book_House
             КлиентОтчество.ItemsSource = Book_houseEntities.GetContext().Клиенты.ToList();
             Книга.ItemsSource = Book_houseEntities.GetContext().Книги.ToList();
             Сотрудник.Text = Manager.IFO;
-            if (_currentКниги_в_аренде.Статус <= 1)
-            {
-                Статус.Text = "В аренде";
-            }
-            else
-            {
-                Статус.Text = "Книга возвращена";
-            }
+            
+            Статус.Text = "В аренде";
+            
+            
         }
         
 private void BtnSave_Click(object sender, RoutedEventArgs e)
@@ -72,12 +68,24 @@ private void BtnSave_Click(object sender, RoutedEventArgs e)
                 _currentКниги_в_аренде.Дата_возврата = DateTime.Today.AddDays(30);
                 _currentКниги_в_аренде.Статус = 1;
                 Book_houseEntities.GetContext().Книги_в_аренде.Add(_currentКниги_в_аренде);
-                
+                var Книгаа = Book_houseEntities.GetContext().Книги.Where(d => d.id == _currentКниги_в_аренде.id_Книги).FirstOrDefault();
+                Книгаа.Количество -= _currentКниги_в_аренде.Количество;
+
             }
 
 
             try
             {
+                var Книгаа = Book_houseEntities.GetContext().Книги.Where(d => d.id == _currentКниги_в_аренде.id_Книги).FirstOrDefault();
+                long Кол_во = Convert.ToInt64(Количество.Text);
+                if (Книгаа.Количество < Кол_во)
+                    errors.AppendLine("На складе нет столько книг");
+                if (errors.Length > 0)
+                    {
+                        MessageBox.Show(errors.ToString());
+                        return;
+                    }
+
                 Book_houseEntities.GetContext().SaveChanges();
                 Manager.Forma.Navigate(new Rent());
             }
@@ -104,19 +112,34 @@ private void BtnSave_Click(object sender, RoutedEventArgs e)
 
             if (_currentКниги_в_аренде.Статус == 1)
                 {
+                if (_currentКниги_в_аренде.id == 0)
+                {
                     _currentКниги_в_аренде.Статус = 2;
-                    var Книгаа = Book_houseEntities.GetContext().Книги.Where(d => d.Название == Книга.Text).FirstOrDefault();
+                    var Книгаа = Book_houseEntities.GetContext().Книги.Where(d => d.id == _currentКниги_в_аренде.id_Книги).FirstOrDefault();
                     Книгаа.Количество += _currentКниги_в_аренде.Количество;
-                    MessageBox.Show("Статус изменён на В аренде");
-                    Статус.Text = "В аренде";
+                    MessageBox.Show("Статус изменён на Книга возвращена");
+                    Статус.Text = "Книга возвращена";
+                }
+                else
+                {
+                    MessageBox.Show("Нельзя изменить статус, пока книга не перешла в аренду");
+                }
             }
                 else
                 {
+                if (_currentКниги_в_аренде.id == 0)
+                {
                     _currentКниги_в_аренде.Статус = 1;
-                    var Книгаа = Book_houseEntities.GetContext().Книги.Where(d => d.Название == Книга.Text).FirstOrDefault();
+                    var Книгаа = Book_houseEntities.GetContext().Книги.Where(d => d.id == _currentКниги_в_аренде.id_Книги).FirstOrDefault();
                     Книгаа.Количество -= _currentКниги_в_аренде.Количество;
-                    MessageBox.Show("Статус изменён  на Книга возвращена");
-                    Статус.Text = "Книга возвращена";
+                    _currentКниги_в_аренде.Фактическая_дата_возврата = DateTime.Today;
+                    MessageBox.Show("Статус изменён на В аренде");
+                    Статус.Text = "В аренде";
+                }
+                else
+                {
+                    MessageBox.Show("Нельзя изменить статус, пока книга не перешла в аренду");
+                }
             }
             
         }

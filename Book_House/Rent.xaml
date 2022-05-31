@@ -29,7 +29,7 @@
                 <DataGridTemplateColumn Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Редактировать" Name="BtnEdit" Click="BtnEdit_click" Style="{DynamicResource ButtonStyle}"></Button>
+                            <Button Content="Инфо" Name="BtnEdit" Click="BtnEdit_click" Style="{DynamicResource ButtonStyle}"></Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

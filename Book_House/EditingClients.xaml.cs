@@ -38,8 +38,6 @@ namespace Book_House
                 errors.AppendLine("Укажите фамилию");
             if (string.IsNullOrWhiteSpace(Имя.Text))
                 errors.AppendLine("Укажите Имя");
-            if (string.IsNullOrWhiteSpace(Отчество.Text))
-                errors.AppendLine("Укажите Отчество");
             if (string.IsNullOrWhiteSpace(Адрес.Text))
                 errors.AppendLine("Укажите Адрес");
             if (string.IsNullOrWhiteSpace(Телефон.Text))
@@ -59,6 +57,16 @@ namespace Book_House
 
             try
             {
+                try
+                {
+                    long Phone = Convert.ToInt64(Телефон.Text);
+                    _currentКлиенты.Телефон = Phone.ToString("+#-###-###-##-##");
+                }
+                catch (Exception) {}
+
+                if (string.IsNullOrWhiteSpace(Отчество.Text))
+                    _currentКлиенты.Отчество = "Нет";
+
                 Book_houseEntities.GetContext().SaveChanges();
                 Manager.Forma.Navigate(new Клиенты1());
             }
@@ -66,11 +74,6 @@ namespace Book_House
             {
                 MessageBox.Show(ex.Message.ToString());
             }
-        }
-
-        private void Exit(object sender, RoutedEventArgs e)
-        {
-            Manager.Forma.Navigate(new Cashier());
         }
     }
 }

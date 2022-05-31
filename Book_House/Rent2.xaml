@@ -25,6 +25,7 @@
             </DataGrid.Columns>
         </DataGrid>
      
-        <Button Content="Выход" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="390,614,416,11" Height="50" Width="230" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Выход" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="289,614,517,11" Height="50" Width="230" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Export в excel" HorizontalAlignment="Center" x:Name="Rxportt" Click="Export"  Style="{DynamicResource ButtonStyle}" Margin="590,614,216,11" Height="50" Width="230" RenderTransformOrigin="-0.573,0.866"/>
     </Grid>
 </Page>

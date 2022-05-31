@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.RowSpan="2"></Image>
         <TextBlock  Style="{DynamicResource CustomFont}"  Text="Списания книг" Margin="391,10,325,549" Width="320" Height="43" FontSize="30"></TextBlock>
-        <DataGrid x:Name="DGridPost" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,58,0,0">
+        <DataGrid x:Name="DGridPost" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,102,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Книга" Binding="{Binding Книги.Название}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Количество" Binding="{Binding Количество}" Width="*"></DataGridTextColumn>
@@ -28,5 +28,9 @@
         <Button Content="Списать книгу" Grid.Row="1" HorizontalAlignment="Center" Name="BtnAdd" Click="BtnAdd_click"  Style="{DynamicResource ButtonStyle}" Margin="40,12,767,11" Height="50" Width="229" RenderTransformOrigin="-0.573,0.866"/>
         <Button Content="Удалить запись" Grid.Row="1" HorizontalAlignment="Center" Name="BtnDelete" Click="BtnDelete_click" Style="{DynamicResource ButtonStyle}" Margin="781,12,40,6" Height="55" Width="215"/>
         <Button Content="Закрыть" Grid.Row="1" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="391,12,417,11" Height="50" Width="228" RenderTransformOrigin="-0.573,0.866"/>
+        <Label x:Name="txtRab" Style="{DynamicResource CustomLabel}"  Content="Вывести по книге:" Margin="0,53,538,509" Width="498" Height="40" FontSize="25"/>
+        <ComboBox DisplayMemberPath="Название" x:Name="Book" Margin="292,58,482,510"/>
+        <Button Content="Вевести все списания" HorizontalAlignment="Center" x:Name="Всее" Click="Все"  Style="{DynamicResource ButtonStyle}"  Height="43" Width="262" Margin="734,49,40,510"/>
+        <Button Content="Обновить" HorizontalAlignment="Center" x:Name="BtnAdd_Copy1" Click="Обновить"  Style="{DynamicResource ButtonStyle}" Margin="571,60,330,510" Height="32" Width="135" RenderTransformOrigin="-0.573,0.866"/>
     </Grid>
 </Page>

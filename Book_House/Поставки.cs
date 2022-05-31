@@ -18,14 +18,14 @@ namespace Book_House
         public Nullable<int> id_Поставщика { get; set; }
         public Nullable<int> id_Книги { get; set; }
         public int Количество { get; set; }
-        public string Дата_поставки { get; set; }
+        public System.DateTime Дата_поставки { get; set; }
         public Nullable<int> id_сотрудника { get; set; }
     
         public virtual Книги Книги { get; set; }
         public virtual Поставщики Поставщики { get; set; }
         public virtual Сотрудники Сотрудники { get; set; }
 
-        public Поставки(int id, int id_Поставщика, int id_Книги, int Количество, string Дата_поставки, int id_сотрудника)
+        public Поставки(int id, int id_Поставщика, int id_Книги, int Количество, DateTime Дата_поставки, int id_сотрудника)
         {
             this.id = id;
             this.id_Поставщика = id_Поставщика;

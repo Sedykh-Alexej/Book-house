@@ -34,6 +34,6 @@
 
         <Button Content="Сохранить" Grid.Row="4" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="269,44,50,33" Width="164"/>
         <Button Content="Отмена" Grid.Row="4" x:Name="Выход" Click="Exit" Style="{DynamicResource ButtonStyle}" Height="58" Margin="63,44,326,33" Width="164" Grid.Column="1"/>
-        <TextBox Text="{Binding Причина}" Grid.Column="1" Grid.Row="3" Margin="40,42,40,38" x:Name="Причина"/>
+        <TextBox Text="{Binding Причина}" Grid.Column="1" Grid.Row="3" Margin="40,42,40,38" x:Name="Причина" SpellCheck.IsEnabled="True" Language="ru-ru"/>
     </Grid>
 </Page>

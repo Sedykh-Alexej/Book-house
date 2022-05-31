@@ -39,8 +39,6 @@ namespace Book_House
                 errors.AppendLine("Укажите имя");
             if (string.IsNullOrWhiteSpace(Фамилия.Text))
                 errors.AppendLine("Укажите фамилию");
-            if (string.IsNullOrWhiteSpace(Отчество.Text))
-                errors.AppendLine("Укажите отчество");
             if (string.IsNullOrWhiteSpace(Адрес.Text))
                 errors.AppendLine("Укажите адрес");
             if (string.IsNullOrWhiteSpace(Телефон.Text))
@@ -60,8 +58,6 @@ namespace Book_House
 
             if (_currentСотрудники.id == 0)
             {
-            //    var Должность = Book_houseEntities.GetContext().Должности.Where(d => d.Должность == должность.Text).FirstOrDefault();
-            //    _currentСотрудники.Должность = Должность.id;
                 _currentСотрудники.Пароль = "1234";
                 _currentСотрудники.Стиль = "Second_style.xaml";
                 Book_houseEntities.GetContext().Сотрудники.Add(_currentСотрудники);
@@ -69,6 +65,15 @@ namespace Book_House
 
             try
             {
+                try
+                {
+                    long Phone = Convert.ToInt64(Телефон.Text);
+                    _currentСотрудники.Телефон = Phone.ToString("+#-###-###-##-##");
+                }
+                catch (Exception) { }
+
+                if (string.IsNullOrWhiteSpace(Отчество.Text))
+                    _currentСотрудники.Отчество = "Нет";
                 Book_houseEntities.GetContext().SaveChanges();
                 Manager.Forma.Navigate(new Sotrudniki());
             }

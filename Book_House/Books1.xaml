@@ -19,7 +19,8 @@
                 <DataGridTextColumn Header="Цена" Binding="{Binding Цена}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Количество" Binding="{Binding Количество}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Автор" Binding="{Binding Автор}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Комментарий" Binding="{Binding Комментарий}" Width="350"></DataGridTextColumn>
+                <DataGridTextColumn Header="Жанр" Binding="{Binding Жанры.Наименование}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Комментарий" Binding="{Binding Комментарий}" Width="*"></DataGridTextColumn>
 
                 <DataGridTemplateColumn Width="auto">
                     <DataGridTemplateColumn.CellTemplate>

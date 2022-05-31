@@ -39,13 +39,16 @@ namespace Book_House
                 errors.AppendLine("Укажите причину");
 
 
+            
+
+            int Кол_во = Convert.ToInt32(Количество.Text);
+            if (Кол_во <= 0)
+                errors.AppendLine("Количество не может быть меньше 0");
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
                 return;
             }
-
-            int Кол_во = Convert.ToInt32(Количество.Text);
             var Книга = Book_houseEntities.GetContext().Книги.Where(d => d.Название == Название.Text).FirstOrDefault();
             Книга.Количество -= Кол_во;
             Списание_книг списание = new Списание_книг(0, Книга.id, Кол_во, Причина.Text, Manager.IDSotr);
@@ -54,7 +57,7 @@ namespace Book_House
             try
             {
                 Book_houseEntities.GetContext().SaveChanges();
-                Manager.Forma.Navigate(new Post());
+                Manager.Forma.Navigate(new Write_offs());
             }
             catch (Exception ex)
             {
