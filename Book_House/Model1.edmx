@@ -65,6 +65,7 @@
           <Property Name="Статус" Type="int" Nullable="false" />
           <Property Name="Фактическая_дата_возврата" Type="date" />
           <Property Name="Количество" Type="int" />
+          <Property Name="К_оплате" Type="int" />
         </EntityType>
         <EntityType Name="Поставки">
           <Key>
@@ -379,6 +380,7 @@
           <Property Name="Статус" Type="Int32" Nullable="false" />
           <Property Name="Фактическая_дата_возврата" Type="DateTime" Precision="0" />
           <Property Name="Количество" Type="Int32" />
+          <Property Name="К_оплате" Type="Int32" />
           <NavigationProperty Name="Клиенты" Relationship="Self.FK_Книги_в_аренде_Клиенты" FromRole="Книги_в_аренде" ToRole="Клиенты" />
           <NavigationProperty Name="Книги" Relationship="Self.FK_Книги_в_аренде_Книги" FromRole="Книги_в_аренде" ToRole="Книги" />
           <NavigationProperty Name="Сотрудники" Relationship="Self.FK_Книги_в_аренде_Сотрудники" FromRole="Книги_в_аренде" ToRole="Сотрудники" />
@@ -706,6 +708,7 @@
                 <ScalarProperty Name="Статус" ColumnName="Статус" />
                 <ScalarProperty Name="Фактическая_дата_возврата" ColumnName="Фактическая_дата_возврата" />
                 <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="К_оплате" ColumnName="К_оплате" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
