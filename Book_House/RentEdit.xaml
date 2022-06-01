@@ -43,7 +43,7 @@
 
         <Button Content="Сохранить" Grid.Row="6" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="457,27,415,27" Width="164" Grid.ColumnSpan="2"/>
         <Button Content="Изменить статус" Grid.Row="4" x:Name="Edit" Click="EditStatus" Style="{DynamicResource ButtonStyle}" Height="43" Margin="40,36,304,33" Width="209" Grid.Column="1"/>
-        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="4" Text="" FontSize="25" Margin="266,36,19,39" Grid.Column="1" x:Name="Статус" Width="268" Height="37"/>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="4" Text="" FontSize="25" Margin="266,36,19,39" Grid.Column="1" x:Name="Статус" Width="268" Height="37" Foreground="Coral"/>
 
     </Grid>
 </Page>

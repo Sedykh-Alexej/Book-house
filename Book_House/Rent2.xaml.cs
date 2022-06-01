@@ -32,14 +32,30 @@ namespace Book_House
         {
             try
             {
-                DGridRent.ItemsSource = Book_houseEntities.GetContext().Книги_в_аренде.Where(d => d.Статус == 1).ToList();
-            }
-            catch (Exception ex)
+                DateTime Date1 = Convert.ToDateTime(Дата1.Text);
+                DateTime Date2 = Convert.ToDateTime(Дата2.Text);
+                DGridRent.ItemsSource = Book_houseEntities.GetContext().Книги_в_аренде.Where(d => d.Дата_получения > Date1 && d.Дата_получения < Date2).ToList();
+                if (DGridRent != null)
+                {
+                    int Sum;
+                    Sum = (int)Book_houseEntities.GetContext().Книги_в_аренде.Where(d => d.Дата_получения > Date1 && d.Дата_получения < Date2).Sum(c => c.К_оплате);
+                    Itog.Text = "Прибль составляет: " + Sum;
+                }
+                else
             {
-                MessageBox.Show(ex.Message.ToString());
+                    Itog.Text = "Прибль составляет: " + 0;
+                }
+
+        }
+            catch (Exception)
+            {
+                MessageBox.Show("Пожалуйста введите дату в фомате: число.месяц.год");
             }
-            int a;
-            a = (int)Book_houseEntities.GetContext().Книги_в_аренде.Sum(c => c.Количество);
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            Manager.Forma.Navigate(new Chief());
         }
     }
 }

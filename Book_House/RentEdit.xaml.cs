@@ -85,7 +85,7 @@ private void BtnSave_Click(object sender, RoutedEventArgs e)
                         MessageBox.Show(errors.ToString());
                         return;
                     }
-
+                _currentКниги_в_аренде.К_оплате = _currentКниги_в_аренде.Количество * Книгаа.Цена;
                 Book_houseEntities.GetContext().SaveChanges();
                 Manager.Forma.Navigate(new Rent());
             }
