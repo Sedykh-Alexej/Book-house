@@ -29,9 +29,9 @@
         <TextBox Text="{Binding Количество}" Grid.Column="1" Grid.Row="3" Margin="40" Name="Количество"></TextBox>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="2" Text="Книга" FontSize="40" Height="47" Margin="175,34,172,32" Width="136"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="4" Text="Статус" FontSize="40" Margin="174,31,161,31" Height="50" Width="148"></TextBlock>
-        <TextBlock Style="{DynamicResource CustomFont}" FontSize="20" Height="30" Margin="132,10,304,73" Width="117" Grid.Column="1" Grid.Row="1" Text="Фамилия:"></TextBlock>
-        <TextBlock Style="{DynamicResource CustomFont}" FontSize="20" Height="23" Margin="183,41,304,49" Width="66" Grid.Column="1" Grid.Row="1" Text="Имя:" RenderTransformOrigin="0.515,0.304"></TextBlock>
-        <TextBlock Style="{DynamicResource CustomFont}" FontSize="20" Height="30" Margin="132,73,304,10" Width="117" Grid.Column="1" Grid.Row="1" Text="Отчество:"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" FontSize="20" Height="30" Margin="132,10,304,73" Width="117" Grid.Column="1" Grid.Row="1" Text="Фамилия"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" FontSize="20" Height="23" Margin="183,41,304,49" Width="66" Grid.Column="1" Grid.Row="1" Text="Имя" RenderTransformOrigin="0.515,0.304"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" FontSize="20" Height="30" Margin="132,73,304,10" Width="117" Grid.Column="1" Grid.Row="1" Text="Отчество"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="0" Grid.Column="1" Text="" FontSize="30" x:Name="Сотрудник"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="3" Text="Количество" FontSize="40"></TextBlock>
 

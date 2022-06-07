@@ -15,6 +15,13 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="Авторы">
+          <Key>
+            <PropertyRef Name="id_Автора" />
+          </Key>
+          <Property Name="id_Автора" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Автор1" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Должности">
           <Key>
             <PropertyRef Name="id" />
@@ -50,7 +57,7 @@
           <Property Name="Цена" Type="int" Nullable="false" />
           <Property Name="Комментарий" Type="varchar" MaxLength="50" />
           <Property Name="Количество" Type="int" />
-          <Property Name="Автор" Type="varchar" MaxLength="50" />
+          <Property Name="Автор" Type="int" />
         </EntityType>
         <EntityType Name="Книги_в_аренде">
           <Key>
@@ -119,6 +126,18 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="Название" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Книги_Авторы">
+          <End Role="Авторы" Type="Self.Авторы" Multiplicity="0..1" />
+          <End Role="Книги" Type="Self.Книги" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Авторы">
+              <PropertyRef Name="id_Автора" />
+            </Principal>
+            <Dependent Role="Книги">
+              <PropertyRef Name="Автор" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Книги_в_аренде_Клиенты">
           <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
           <End Role="Книги_в_аренде" Type="Self.Книги_в_аренде" Multiplicity="*" />
@@ -253,6 +272,7 @@
         </Association>
         <EntityContainer Name="Хранилище Book_houseModelContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Авторы" EntityType="Self.Авторы" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Должности" EntityType="Self.Должности" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Жанры" EntityType="Self.Жанры" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Клиенты" EntityType="Self.Клиенты" Schema="dbo" store:Type="Tables" />
@@ -263,6 +283,10 @@
           <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Списание_книг" EntityType="Self.Списание_книг" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Статус" EntityType="Self.Статус" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Книги_Авторы" Association="Self.FK_Книги_Авторы">
+            <End Role="Авторы" EntitySet="Авторы" />
+            <End Role="Книги" EntitySet="Книги" />
+          </AssociationSet>
           <AssociationSet Name="FK_Книги_в_аренде_Клиенты" Association="Self.FK_Книги_в_аренде_Клиенты">
             <End Role="Клиенты" EntitySet="Клиенты" />
             <End Role="Книги_в_аренде" EntitySet="Книги_в_аренде" />
@@ -323,6 +347,14 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Авторы">
+          <Key>
+            <PropertyRef Name="id_Автора" />
+          </Key>
+          <Property Name="id_Автора" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Автор1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Книги" Relationship="Self.FK_Книги_Авторы" FromRole="Авторы" ToRole="Книги" />
+        </EntityType>
         <EntityType Name="Должности">
           <Key>
             <PropertyRef Name="id" />
@@ -361,7 +393,8 @@
           <Property Name="Цена" Type="Int32" Nullable="false" />
           <Property Name="Комментарий" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Количество" Type="Int32" />
-          <Property Name="Автор" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Автор" Type="Int32" />
+          <NavigationProperty Name="Авторы" Relationship="Self.FK_Книги_Авторы" FromRole="Книги" ToRole="Авторы" />
           <NavigationProperty Name="Жанры" Relationship="Self.FK_Книги_Жанры" FromRole="Книги" ToRole="Жанры" />
           <NavigationProperty Name="Книги_в_аренде" Relationship="Self.FK_Книги_в_аренде_Книги" FromRole="Книги" ToRole="Книги_в_аренде" />
           <NavigationProperty Name="Поставки" Relationship="Self.FK_Поставки_Книги" FromRole="Книги" ToRole="Поставки" />
@@ -449,6 +482,18 @@
           <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Книги_в_аренде" Relationship="Self.FK_Книги_в_аренде_Статус" FromRole="Статус" ToRole="Книги_в_аренде" />
         </EntityType>
+        <Association Name="FK_Книги_Авторы">
+          <End Role="Авторы" Type="Self.Авторы" Multiplicity="0..1" />
+          <End Role="Книги" Type="Self.Книги" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Авторы">
+              <PropertyRef Name="id_Автора" />
+            </Principal>
+            <Dependent Role="Книги">
+              <PropertyRef Name="Автор" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Сотрудники_Должности">
           <End Role="Должности" Type="Self.Должности" Multiplicity="1" />
           <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="*" />
@@ -583,6 +628,7 @@
         </Association>
         <EntityContainer Name="Book_houseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Авторы" EntityType="Self.Авторы" />
           <EntitySet Name="Должности" EntityType="Self.Должности" />
           <EntitySet Name="Жанры" EntityType="Self.Жанры" />
           <EntitySet Name="Клиенты" EntityType="Self.Клиенты" />
@@ -593,6 +639,10 @@
           <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
           <EntitySet Name="Списание_книг" EntityType="Self.Списание_книг" />
           <EntitySet Name="Статус" EntityType="Self.Статус" />
+          <AssociationSet Name="FK_Книги_Авторы" Association="Self.FK_Книги_Авторы">
+            <End Role="Авторы" EntitySet="Авторы" />
+            <End Role="Книги" EntitySet="Книги" />
+          </AssociationSet>
           <AssociationSet Name="FK_Сотрудники_Должности" Association="Self.FK_Сотрудники_Должности">
             <End Role="Должности" EntitySet="Должности" />
             <End Role="Сотрудники" EntitySet="Сотрудники" />
@@ -652,6 +702,14 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Авторы">
+            <EntityTypeMapping TypeName="Book_houseModel.Авторы">
+              <MappingFragment StoreEntitySet="Авторы">
+                <ScalarProperty Name="id_Автора" ColumnName="id_Автора" />
+                <ScalarProperty Name="Автор1" ColumnName="Автор1" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

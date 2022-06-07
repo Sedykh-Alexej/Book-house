@@ -14,7 +14,7 @@
             <RowDefinition Height="73"/>
         </Grid.RowDefinitions>
         <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.RowSpan="2"></Image>
-        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Поставки книг" Margin="392,0,340,560" Width="304" Height="42" FontSize="30"></TextBlock>
+        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Поставки книг" Margin="392,0,389,560" Width="255" Height="42" FontSize="30"></TextBlock>
         <DataGrid x:Name="DGridPost" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,110,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Поставщик" Binding="{Binding Поставщики.Наименование}" Width="*"></DataGridTextColumn>
@@ -29,13 +29,13 @@
 
         <Button Content="Оформить поставку" Grid.Row="1" HorizontalAlignment="Center" Name="BtnAdd" Click="BtnAdd_click"  Style="{DynamicResource ButtonStyle}" Margin="25,12,782,11" Height="50" Width="229" RenderTransformOrigin="-0.573,0.866"/>
         <Button Content="Удалить запись" Grid.Row="1" HorizontalAlignment="Center" Name="BtnDelete" Click="BtnDelete_click" Style="{DynamicResource ButtonStyle}" Margin="793,10,28,8" Height="55" Width="215"/>
-        <Button Content="Закрыть" Grid.Row="1" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="414,12,394,11" Height="50" Width="228" RenderTransformOrigin="-0.573,0.866"/>
-        <Label x:Name="txtRab" Style="{DynamicResource CustomLabel}"  Content="Вывести по поставщику:" Margin="0,32,538,530" Width="498" Height="40" FontSize="25"/>
-        <Label x:Name="txtRab_Copy" Style="{DynamicResource CustomLabel}"  Content="Вывести по книге:" Margin="88,66,538,497" Width="410" Height="39" FontSize="25"/>
-        <ComboBox DisplayMemberPath="Наименование" x:Name="Поставщики" Margin="360,36,414,532"/>
-        <ComboBox DisplayMemberPath="Название" x:Name="Книги" Margin="360,71,414,497"/>
-        <Button Content="Обновить" HorizontalAlignment="Center" x:Name="BtnAdd_Copy1" Click="Обновить"  Style="{DynamicResource ButtonStyle}" Margin="627,40,274,530" Height="32" Width="135" RenderTransformOrigin="-0.573,0.866"/>
-        <Button Content="Обновить" HorizontalAlignment="Center" Click="Обновить2"  Style="{DynamicResource ButtonStyle}" Margin="627,77,274,493" Height="32" Width="135" RenderTransformOrigin="-0.573,0.866"/>
-        <Button Content="Вевести все постаки" HorizontalAlignment="Center" x:Name="Всее" Click="Все"  Style="{DynamicResource ButtonStyle}"  Height="43" Width="239" Margin="787,49,10,510"/>
+        <Button Content="Закрыть" Grid.Row="1" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="392,13,416,10" Height="50" Width="228" RenderTransformOrigin="-0.573,0.866"/>
+        <Label x:Name="txtRab" Style="{DynamicResource CustomLabel}"  Content="По поставщику" Margin="114,29,0,0" Width="224" Height="40" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label x:Name="txtRab_Copy" Style="{DynamicResource CustomLabel}"  Content="По названию" Margin="114,62,0,0" Width="642" Height="39" FontSize="25" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <ComboBox DisplayMemberPath="Наименование" x:Name="Поставщики" Margin="380,35,394,533"/>
+        <ComboBox DisplayMemberPath="Название" x:Name="Книги" Margin="380,70,394,498"/>
+        <Button Content="Обновить"  x:Name="BtnAdd_Copy1" Click="Обновить"  Style="{DynamicResource ButtonStyle}" Margin="647,30,254,540" Height="32" Width="135" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Обновить"  Click="Обновить2"  Style="{DynamicResource ButtonStyle}" Margin="647,73,254,497" Height="32" Width="135" RenderTransformOrigin="-0.573,0.866" />
+        <Button Content="Все поставки" x:Name="Всее" Click="Все"  Style="{DynamicResource ButtonStyle}"  Height="32" Width="170" Margin="793,51,73,519"/>
     </Grid>
 </Page>

@@ -4,9 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Book_House"
+      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="675" d:DesignWidth="1036"
       Title="BookEdit">
+
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -21,21 +23,33 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="6"></Image>
+        <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="7" Margin="0,0,0,10"></Image>
         <TextBlock Style="{DynamicResource CustomFont}"  Text="Наименование" FontSize="40"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="1" Text="Жанр" FontSize="40"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="2" Text="Цена" FontSize="40"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="3" Text="Количество" FontSize="40"></TextBlock>
-        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="4" Text="Комментарий" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="4" Text="Автор" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="5" Text="Комментарий" FontSize="40"></TextBlock>
 
-        <TextBox Text="{Binding Название}" Grid.Column="1" Grid.Row="0" Margin="40" Name="Название" SpellCheck.IsEnabled="True" Language="ru-ru"></TextBox>
-        <ComboBox SelectedItem="{Binding Жанры}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Наименование" x:Name="Жанр" Margin="40"></ComboBox>
-        <TextBox Text="{Binding Цена}" Grid.Column="1" Grid.Row="2" Margin="40" Name="Цена"></TextBox>
-        <TextBox Text="{Binding Количество}" Grid.Column="1" Grid.Row="3" Margin="40" Name="Количество"></TextBox>
-        <TextBox Text="{Binding Комментарий}" Grid.Column="1" Grid.Row="4" Margin="40,33,40,17" Name="Комментарий"></TextBox>
+        <TextBox Text="{Binding Название}" Grid.Column="1" Grid.Row="0" Margin="40,40,40,25" Name="Название" SpellCheck.IsEnabled="True" Language="ru-ru"></TextBox>
+        <ComboBox SelectedItem="{Binding Жанры}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Наименование" x:Name="Жанр" Margin="40,40,40,26"></ComboBox>
+        <TextBox Text="{Binding Цена}" Grid.Column="1" Grid.Row="2" Margin="40,40,40,25" Name="Цена"></TextBox>
+        <TextBox Text="{Binding Количество}" Grid.Column="1" Grid.Row="3" Margin="40,40,40,25" Name="Количество"></TextBox>
+        <TextBox Text="{Binding Комментарий}" Grid.Column="1" Grid.Row="5" Margin="40,33,40,17" Name="Комментарий"></TextBox>
 
-        <Button Content="Сохранить" Grid.Row="5" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="449,27,423,27" Width="164" Grid.ColumnSpan="2"/>
+        <Button Content="Сохранить" Grid.Row="6" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="59" Margin="420,10,403,27" Width="213" Grid.ColumnSpan="2"/>
+        <controls:AutoCompleteBox Margin="45,31,37,30" RenderTransformOrigin="0.5,0.5" Populating="Populating" x:Name="outAvtor" Grid.Row="4" Grid.Column="1" Text="{Binding Авторы.Автор1}">
+            <controls:AutoCompleteBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.363"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.744"/>
+                </TransformGroup>
+            </controls:AutoCompleteBox.RenderTransform>
+        </controls:AutoCompleteBox>
     </Grid>
 </Page>

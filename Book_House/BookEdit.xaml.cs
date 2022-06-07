@@ -21,6 +21,8 @@ namespace Book_House
     public partial class BookEdit : Page
     {
         public Книги _currentКниги = new Книги();
+        public List<string> namelist;
+        public Book_houseEntities db;
         public BookEdit(Книги selectedКниги)
         {
             InitializeComponent();
@@ -29,6 +31,41 @@ namespace Book_House
 
             DataContext = _currentКниги;
             Жанр.ItemsSource = Book_houseEntities.GetContext().Жанры.ToList();
+            db = new Book_houseEntities();
+            namelist = new List<string>();
+            foreach (var item in db.Авторы)
+            {
+                namelist.Add(item.Автор1);
+            }
+        }
+
+        private void Populating(object sender, PopulatingEventArgs e)
+        {
+            try
+            {
+                string txt = outAvtor.Text;
+                List<string> outoList = new List<string>();
+                outoList.Clear();
+                if (namelist != null)
+                {
+                    foreach (string item in namelist)
+                    {
+                        if (!string.IsNullOrEmpty(outAvtor.Text))
+                        {
+                            if (item.ToLower().StartsWith(txt.ToLower()))
+                            {
+                                outoList.Add(item);
+                            }
+                        }
+                    }
+                    outAvtor.ItemsSource = outoList;
+                    outAvtor.PopulateComplete();
+                }
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.ToString());
+            }
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
@@ -46,6 +83,8 @@ namespace Book_House
                 errors.AppendLine("Количество не может быть меньше или равно 0");
             if (string.IsNullOrWhiteSpace(Жанр.Text))
                 errors.AppendLine("Укажите жанр");
+            if (string.IsNullOrWhiteSpace(outAvtor.Text))
+                errors.AppendLine("Укажите автора");
 
 
             if (errors.Length > 0)
@@ -62,6 +101,17 @@ namespace Book_House
 
             try
             {
+                var Avtor = Book_houseEntities.GetContext().Авторы.Where(d => d.Автор1 == outAvtor.Text).FirstOrDefault();
+                if (Avtor == null)
+                {
+                    Авторы Avtorr = new Авторы(0, outAvtor.Text);
+                    Book_houseEntities.GetContext().Авторы.Add(Avtorr);
+                    _currentКниги.Автор = Avtorr.id_Автора;
+                }
+                else
+                {
+                    _currentКниги.Автор = Avtor.id_Автора;
+                }
                 Book_houseEntities.GetContext().SaveChanges();
                 Manager.Forma.Navigate(new Books1());
             }

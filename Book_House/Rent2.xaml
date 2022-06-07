@@ -10,20 +10,20 @@
 
     <Grid>
         <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill"></Image>
-        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Прибль составляет:" Margin="10,560,27,77" Width="999" Height="38" FontSize="30" Foreground="Coral" x:Name="Itog"></TextBlock>
-        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Полученная прибль за период времени" Margin="224,10,27,632" Width="785" Height="33" FontSize="30"></TextBlock>
-        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Введиде дату начала:" Margin="0,48,663,582" Width="373" Height="45" FontSize="30"></TextBlock>
-        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Введиде дату конца:" Margin="0,80,663,562" Width="373" Height="33" FontSize="30"></TextBlock>
-        <Button Content="Сформировать" HorizontalAlignment="Center" Click="Все"  Style="{DynamicResource ButtonStyle}" Margin="709,63,73,582" Height="30" Width="254" RenderTransformOrigin="-0.573,0.866"/>
+        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Прибыль составляет: 0 рублей" Margin="10,560,27,77" Width="999" Height="38" FontSize="30" Foreground="Coral" x:Name="Itog"></TextBlock>
+        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Полученная прибыль за период времени" Margin="203,10,102,632" Width="731" Height="33" FontSize="30"></TextBlock>
+        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Дата начала" Margin="109,49,0,0" Width="282" Height="45" FontSize="30" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
+        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Дата окончания" Margin="109,84,0,0" Width="282" Height="33" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBlock>
+        <Button Content="Сформировать" HorizontalAlignment="Left" Click="Все"  Style="{DynamicResource ButtonStyle}" Margin="655,56,0,574" Height="45" Width="170" RenderTransformOrigin="-0.573,0.866"/>
         <DataGrid x:Name="DGridRent" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,123,0,135">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Книга" Binding="{Binding Книги.Название}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название книги" Binding="{Binding Книги.Название}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Фамилия клиента" Binding="{Binding Клиенты.Фамилия}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Имя клиента" Binding="{Binding Клиенты.Имя}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Отчество клиента" Binding="{Binding Клиенты.Отчество}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Количество" Binding="{Binding Количество}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Цена" Binding="{Binding Книги.Цена}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="К оплате" Binding="{Binding К_оплате}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Стоимость аренды за месяц" Binding="{Binding Книги.Цена}" Width="250"></DataGridTextColumn>
+                <DataGridTextColumn Header="Итого" Binding="{Binding К_оплате}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Выход" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="405,615,401,10" Height="50" Width="230" RenderTransformOrigin="-0.573,0.866"/>

@@ -10,7 +10,8 @@
 
     <Grid>
         <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill"></Image>
-        <Label x:Name="txtRab" Style="{DynamicResource CustomLabel}"  Content="Приветствуем вас на рабочем месте" Margin="14,26,31,602" Width="991" Height="47" FontSize="25"></Label>
+        <Label x:Name="txtRab_Copy" Style="{DynamicResource CustomLabel}"  Content="Форма работника склада" Foreground="Black" Margin="656,0,0,0" Width="380" Height="47" FontSize="25" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label x:Name="txtRab" Style="{DynamicResource CustomLabel}"  Content="Приветствуем вас на рабочем месте" Margin="27,55,0,0" Width="991" Height="47" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
         <Button Content="Изменение стиля"  Style="{DynamicResource ButtonStyle}" Margin="32,454,766,171" Height="50" Width="238" Click="Editstyle"></Button>
         <Button Content="Браузер"  Style="{DynamicResource ButtonStyle}" Margin="27,357,766,268" Height="50" Width="243" Click="Браузер"></Button>
         <Button Content="Блокнот"  Style="{DynamicResource ButtonStyle}" Margin="27,184,766,441" Width="243" Height="50" Click="Блокнот"></Button>
@@ -20,7 +21,7 @@
         <Button Content="Изменение пароля"  Style="{DynamicResource ButtonStyle}" Margin="32,547,766,78" Height="50" Width="238" Click="EditParol"/>
         <Button Content="Поставщики"  Style="{DynamicResource ButtonStyle}" Margin="517,107,235,510" Height="58" Width="284" Click="EditPost"/>
         <Button Content="Поставки"  Style="{DynamicResource ButtonStyle}" Margin="517,198,235,419" Height="58" Width="284" Click="EditPostav"/>
-        <Button Content="Cписания книг"  Style="{DynamicResource ButtonStyle}" Margin="517,303,235,314" Height="58" Width="284" Click="Write_offs"/>
+        <Button Content="Cписание книг"  Style="{DynamicResource ButtonStyle}" Margin="517,303,235,314" Height="58" Width="284" Click="Write_offs"/>
         <Button Content="Ревизия книг"  Style="{DynamicResource ButtonStyle}" Margin="517,418,235,199" Height="58" Width="284" Click="Book"/>
     </Grid>
 </Page>

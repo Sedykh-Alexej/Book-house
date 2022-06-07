@@ -24,7 +24,7 @@ namespace Book_House
         {
             InitializeComponent();
             DGridPostav.ItemsSource = Book_houseEntities.GetContext().Поставщики.ToList();
-        }
+    }
 
         private void BtnEdit_click(object sender, RoutedEventArgs e)
         {

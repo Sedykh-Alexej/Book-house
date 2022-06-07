@@ -10,20 +10,20 @@
 
     <Grid>
         <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill"></Image>
-        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Аренда книнг" Margin="411,10,318,632" Width="307" Height="33" FontSize="30"></TextBlock>
+        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Аренда книнг" Margin="411,10,380,632" Width="245" Height="33" FontSize="30"></TextBlock>
         <Button Content="Данный момент в аренде" HorizontalAlignment="Center" x:Name="BtnAdd_Copy1" Click="Status"  Style="{DynamicResource ButtonStyle}" Margin="346,63,336,582" Height="30" Width="354" RenderTransformOrigin="-0.573,0.866"/>
-        <Button Content="Просроченные книги" HorizontalAlignment="Center" x:Name="Просроченные" Click="Просроченные_книги"  Style="{DynamicResource ButtonStyle}" Margin="23,63,759,582" Height="30" Width="254" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Срок аренды истёк" HorizontalAlignment="Center" x:Name="Просроченные" Click="Просроченные_книги"  Style="{DynamicResource ButtonStyle}" Margin="23,63,759,582" Height="30" Width="254" RenderTransformOrigin="-0.573,0.866"/>
         <Button Content="Все" HorizontalAlignment="Center" Click="Все"  Style="{DynamicResource ButtonStyle}" Margin="772,63,10,582" Height="30" Width="254" RenderTransformOrigin="-0.573,0.866"/>
         <DataGrid x:Name="DGridRent" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,108,0,71">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Книга" Binding="{Binding Книги.Название}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Фамилия клиента" Binding="{Binding Клиенты.Фамилия}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Имя клиента" Binding="{Binding Клиенты.Имя}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Отчество клиента" Binding="{Binding Клиенты.Отчество}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Количество" Binding="{Binding Количество}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Название книги" Binding="{Binding Книги.Название}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Фамилия клиента" Binding="{Binding Клиенты.Фамилия}" Width="110"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя клиента" Binding="{Binding Клиенты.Имя}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Отчество клиента" Binding="{Binding Клиенты.Отчество}" Width="110"></DataGridTextColumn>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Количество}" Width="80"></DataGridTextColumn>
                 <DataGridTextColumn Header="Дата получения" Binding="{Binding Дата_получения, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Дата возврата" Binding="{Binding Дата_возврата, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Дата фактического возврата" Binding="{Binding Фактическая_дата_возврата, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата возврата (факт)" Binding="{Binding Фактическая_дата_возврата, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Статус" Binding="{Binding Статус1.Название}" Width="*"></DataGridTextColumn>
 
                 <DataGridTemplateColumn Width="auto">
@@ -38,6 +38,6 @@
 
         <Button Content="Добавить" HorizontalAlignment="Center" Name="BtnAdd" Click="BtnAdd_click"  Style="{DynamicResource ButtonStyle}" Margin="48,615,759,10" Height="50" Width="229" RenderTransformOrigin="-0.573,0.866"/>
         <Button Content="Удалить" HorizontalAlignment="Center" Name="BtnDelete" Click="BtnDelete_click" Style="{DynamicResource ButtonStyle}" Margin="780,609,42,11" Height="55" Width="214"/>
-        <Button Content="Выход" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="390,614,416,11" Height="50" Width="230" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Выход" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="411,614,395,11" Height="50" Width="230" RenderTransformOrigin="-0.573,0.866"/>
     </Grid>
 </Page>

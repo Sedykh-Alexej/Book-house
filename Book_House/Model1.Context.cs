@@ -35,6 +35,7 @@ namespace Book_House
         }
     
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Авторы> Авторы { get; set; }
         public virtual DbSet<Должности> Должности { get; set; }
         public virtual DbSet<Жанры> Жанры { get; set; }
         public virtual DbSet<Клиенты> Клиенты { get; set; }

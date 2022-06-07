@@ -14,7 +14,7 @@
             <RowDefinition Height="73"/>
         </Grid.RowDefinitions>
         <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.RowSpan="2"></Image>
-        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Поставщики" Margin="410,0,317,553" Width="309" Height="49" FontSize="30"></TextBlock>
+        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Поставщики" Margin="410,0,397,553" Width="229" Height="49" FontSize="30"></TextBlock>
         <DataGrid x:Name="DGridPostav" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,48,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Наименование}" Width="*"></DataGridTextColumn>
@@ -33,6 +33,6 @@
 
         <Button Content="Добавить" Grid.Row="1" HorizontalAlignment="Center" Name="BtnAdd" Click="BtnAdd_click"  Style="{DynamicResource ButtonStyle}" Margin="25,12,782,11" Height="50" Width="229" RenderTransformOrigin="-0.573,0.866"/>
         <Button Content="Удалить" Grid.Row="1" HorizontalAlignment="Center" Name="BtnDelete" Click="BtnDelete_click" Style="{DynamicResource ButtonStyle}" Margin="793,10,28,8" Height="55" Width="215"/>
-        <Button Content="Выход" Grid.Row="1" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="396,12,411,11" Height="50" Width="229" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Выход" Grid.Row="1" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="410,12,397,11" Height="50" Width="229" RenderTransformOrigin="-0.573,0.866"/>
     </Grid>
 </Page>

@@ -51,6 +51,14 @@ namespace Book_House
             {
                 var Сотрудник = Book_houseEntities.GetContext().Сотрудники.Where(d => (d.id == Manager.IDSotr)).FirstOrDefault();
                 Сотрудник.Пароль = PasswordBoxx.Password;
+
+                if (Сотрудник.Пароль == PasswordBoxx.Password)
+                    errors.AppendLine("Пароль совпадает с предыдущим");
+                if (errors.Length > 0)
+                {
+                    MessageBox.Show(errors.ToString());
+                    return;
+                }
                 Book_houseEntities.GetContext().SaveChanges();
                 MessageBox.Show("Пароль обновлён!");
                 Manager.Forma.GoBack();

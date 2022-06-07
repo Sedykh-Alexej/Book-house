@@ -24,7 +24,7 @@ namespace Book_House
         {
             InitializeComponent();
             Жанр.ItemsSource = Book_houseEntities.GetContext().Жанры.ToList();
-            Автор.ItemsSource = Book_houseEntities.GetContext().Книги.ToList();
+            Автор.ItemsSource = Book_houseEntities.GetContext().Авторы.ToList();
 
         }
         private void BtnEdit_click(object sender, RoutedEventArgs e)
@@ -102,8 +102,9 @@ namespace Book_House
             }
 
             try
-            { 
-                DGridBook.ItemsSource = Book_houseEntities.GetContext().Книги.Where(d => d.Автор == Автор.Text).ToList();
+            {
+                var Avtor = Book_houseEntities.GetContext().Авторы.Where(d => d.Автор1 == Автор.Text).FirstOrDefault();
+                DGridBook.ItemsSource = Book_houseEntities.GetContext().Книги.Where(d => d.Автор == Avtor.id_Автора).ToList();
             }
             catch (Exception ex)
             {

@@ -34,10 +34,14 @@ namespace Book_House
             КлиентОтчество.ItemsSource = Book_houseEntities.GetContext().Клиенты.ToList();
             Книга.ItemsSource = Book_houseEntities.GetContext().Книги.ToList();
             Сотрудник.Text = Manager.IFO;
-            
-            Статус.Text = "В аренде";
-            
-            
+            if (_currentКниги_в_аренде.Статус == 0)
+            {
+                Статус.Text = "В аренде";
+            }
+            else
+            {
+                Статус.Text = _currentКниги_в_аренде.Статус1.Название;
+            }
         }
         
 private void BtnSave_Click(object sender, RoutedEventArgs e)
@@ -70,7 +74,6 @@ private void BtnSave_Click(object sender, RoutedEventArgs e)
                 Book_houseEntities.GetContext().Книги_в_аренде.Add(_currentКниги_в_аренде);
                 var Книгаа = Book_houseEntities.GetContext().Книги.Where(d => d.id == _currentКниги_в_аренде.id_Книги).FirstOrDefault();
                 Книгаа.Количество -= _currentКниги_в_аренде.Количество;
-
             }
 
 
@@ -112,11 +115,12 @@ private void BtnSave_Click(object sender, RoutedEventArgs e)
 
             if (_currentКниги_в_аренде.Статус == 1)
                 {
-                if (_currentКниги_в_аренде.id == 0)
+                if (_currentКниги_в_аренде.id != 0)
                 {
                     _currentКниги_в_аренде.Статус = 2;
                     var Книгаа = Book_houseEntities.GetContext().Книги.Where(d => d.id == _currentКниги_в_аренде.id_Книги).FirstOrDefault();
                     Книгаа.Количество += _currentКниги_в_аренде.Количество;
+                    _currentКниги_в_аренде.Фактическая_дата_возврата = DateTime.Today;
                     MessageBox.Show("Статус изменён на Книга возвращена");
                     Статус.Text = "Книга возвращена";
                 }
@@ -127,12 +131,12 @@ private void BtnSave_Click(object sender, RoutedEventArgs e)
             }
                 else
                 {
-                if (_currentКниги_в_аренде.id == 0)
+                if (_currentКниги_в_аренде.id != 0)
                 {
                     _currentКниги_в_аренде.Статус = 1;
                     var Книгаа = Book_houseEntities.GetContext().Книги.Where(d => d.id == _currentКниги_в_аренде.id_Книги).FirstOrDefault();
                     Книгаа.Количество -= _currentКниги_в_аренде.Количество;
-                    _currentКниги_в_аренде.Фактическая_дата_возврата = DateTime.Today;
+                    _currentКниги_в_аренде.Фактическая_дата_возврата = null;
                     MessageBox.Show("Статус изменён на В аренде");
                     Статус.Text = "В аренде";
                 }

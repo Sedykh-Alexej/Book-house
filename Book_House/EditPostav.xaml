@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
         <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="5"></Image>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="0" Text="Поставщик" FontSize="40"></TextBlock>
-        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="1" Text="Книга" FontSize="40"></TextBlock>
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="1" Text="Название  книги" FontSize="40"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="2" Text="Количество" FontSize="40"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="3" Text="Сотрудник" FontSize="40"></TextBlock>
 

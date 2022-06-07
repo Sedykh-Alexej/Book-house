@@ -10,7 +10,7 @@
 
     <Grid>
         <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill"></Image>
-        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Регистрация клиента" Margin="324,0,340,617" Width="372" Height="58" FontSize="30"></TextBlock>
+        <TextBlock  Style="{DynamicResource CustomFont}"  Text="Регистрация клиента" Margin="341,0,323,638" Width="372" Height="37" FontSize="30"></TextBlock>
         <Label  Style="{DynamicResource CustomLabel}"  Content="Введите фамилию:" Margin="28,37,776,599" Width="232" Height="39" FontSize="20"></Label>
         <ComboBox DisplayMemberPath="Фамилия" x:Name="Фамилия" Margin="262,42,527,604"/>
         <Label  Style="{DynamicResource CustomLabel}"  Content="Введите имя:" Margin="96,73,776,563" Width="164" Height="39" FontSize="20" RenderTransformOrigin="-0.096,0.808"></Label>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -63,15 +64,33 @@ namespace Book_House
                 Book_houseEntities.GetContext().Сотрудники.Add(_currentСотрудники);
             }
 
+
+
+            string resultString = string.Join(string.Empty, Regex.Matches(Телефон.Text, @"\d+").OfType<Match>().Select(m => m.Value));
+            if (resultString.Length != 11)
+                errors.AppendLine("Проверьте кол-во цифр в номере");
+            if (resultString[0] == '7')
+            {
+                _currentСотрудники.Телефон = Regex.Replace(resultString, @"(\d{1})(\d{3})(\d{0,3})(\d{0,2})(\d{0,2})", "+$1($2)$3-$4-$5");
+            }
+            else if (resultString[0] == '8')
+            {
+                _currentСотрудники.Телефон = Regex.Replace(resultString, @"(\d{1})(\d{3})(\d{0,3})(\d{0,2})(\d{0,2})", "$1($2)$3-$4-$5");
+            }
+            else
+            {
+                errors.AppendLine("Номер должен начинаться с +7 или 8");
+            }
+
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
+                return;
+            }
+
+
             try
             {
-                try
-                {
-                    long Phone = Convert.ToInt64(Телефон.Text);
-                    _currentСотрудники.Телефон = Phone.ToString("+#-###-###-##-##");
-                }
-                catch (Exception) { }
-
                 if (string.IsNullOrWhiteSpace(Отчество.Text))
                     _currentСотрудники.Отчество = "Нет";
                 Book_houseEntities.GetContext().SaveChanges();

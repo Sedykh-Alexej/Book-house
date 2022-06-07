@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Excel = Microsoft.Office.Interop.Excel;
 
 
 
@@ -39,17 +38,17 @@ namespace Book_House
                 {
                     int Sum;
                     Sum = (int)Book_houseEntities.GetContext().Книги_в_аренде.Where(d => d.Дата_получения > Date1 && d.Дата_получения < Date2).Sum(c => c.К_оплате);
-                    Itog.Text = "Прибль составляет: " + Sum;
+                    Itog.Text = "Прибыль составляет: " + Sum + " рублей";
                 }
                 else
             {
-                    Itog.Text = "Прибль составляет: " + 0;
+                    Itog.Text = "Прибыль составляет: " + "0 рублей";
                 }
 
         }
             catch (Exception)
             {
-                MessageBox.Show("Пожалуйста введите дату в фомате: число.месяц.год");
+                MessageBox.Show("Нет записей за текущий период. Пожалуйста, проверьте формат даты: число.месяц.год");
             }
         }
 

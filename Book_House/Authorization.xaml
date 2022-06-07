@@ -10,10 +10,10 @@
       Title="Authorization">
     <Grid>
         <Image Source="Resources/1613684418_10-p-knizhnii-fon-dlya-teksta-10.jpg" Stretch="Fill"></Image>
-        <Label Content="Пользователь:" Style="{DynamicResource CustomLabel}" Margin="232,154,623,487" VerticalAlignment="Center" HorizontalAlignment="Center" Width="181"></Label>
-        <Label Content="Пароль:" Style="{DynamicResource CustomLabel}" Margin="313,300,623,342" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100"></Label>
-        <PasswordBox x:Name="PasswordBoxx" Margin="418,300,270,340"></PasswordBox>
-        <controls:AutoCompleteBox Margin="415,154,273,484" RenderTransformOrigin="0.5,0.5" Populating="Populating" x:Name="outText">
+        <Label Content="Пользователь:" Style="{DynamicResource CustomLabel}" Margin="198,160,657,482" VerticalAlignment="Center" HorizontalAlignment="Center" Width="181"></Label>
+        <Label Content="Пароль:" Style="{DynamicResource CustomLabel}" Margin="279,300,657,342" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" RenderTransformOrigin="0.89,0.576"></Label>
+        <PasswordBox x:Name="PasswordBoxx" Margin="384,300,304,340"></PasswordBox>
+        <controls:AutoCompleteBox Margin="384,158,304,480" RenderTransformOrigin="0.5,0.5" Populating="Populating" x:Name="outText">
             <controls:AutoCompleteBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -23,7 +23,8 @@
                 </TransformGroup>
             </controls:AutoCompleteBox.RenderTransform>
         </controls:AutoCompleteBox>
-        <Button Content="Войти" Style="{DynamicResource ButtonStyle}" Margin="418,411,482,214" Height="50" Width="136" Click="Войти"></Button>
-        <Button Content="Отмена" Style="{DynamicResource ButtonStyle}" Margin="630,411,270,214" Height="50" Width="136" Click="Exit"></Button>
+        <Button Content="Войти" Style="{DynamicResource ButtonStyle}" Margin="384,411,516,214" Height="50" Width="136" Click="Войти"></Button>
+        <Button Content="Отмена" Style="{DynamicResource ButtonStyle}" Margin="596,411,304,214" Height="50" Width="136" Click="Exit"></Button>
+        <Label Content="Авторизация сотрудников" Style="{DynamicResource CustomLabel}" VerticalAlignment="Top" Width="314" HorizontalAlignment="Left" Margin="384,0,0,0"/>
     </Grid>
 </Page>

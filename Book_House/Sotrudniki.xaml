@@ -35,8 +35,8 @@
         </DataGrid>
 
 
-        <Button Content="Новый сотрудник" Grid.Row="1" HorizontalAlignment="Center" Name="BtnAdd" Click="BtnAdd_click"  Style="{DynamicResource ButtonStyle}" Margin="25,12,782,11" Height="50" Width="229" RenderTransformOrigin="-0.573,0.866"/>
-        <Button Content="Удалить профиль сотрудника" Grid.Row="1" HorizontalAlignment="Center" Name="BtnDelete" Click="BtnDelete_click" Style="{DynamicResource ButtonStyle}" Margin="678,8,10,10" Height="55" Width="348"/>
-        <Button Content="Закрыть" Grid.Row="1" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="395,12,413,11" Height="50" Width="228" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Новый сотрудник" Grid.Row="1"  Name="BtnAdd" Click="BtnAdd_click"  Style="{DynamicResource ButtonStyle}" Margin="10,13,660,10" Height="50" Width="366" RenderTransformOrigin="-0.573,0.866" />
+        <Button Content="Удалить профиль" Grid.Row="1" HorizontalAlignment="Center" Name="BtnDelete" Click="BtnDelete_click" Style="{DynamicResource ButtonStyle}" Margin="678,8,10,10" Height="55" Width="348"/>
+        <Button Content="Закрыть" Grid.Row="1" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="413,13,395,10" Height="50" Width="228" RenderTransformOrigin="-0.573,0.866"/>
     </Grid>
 </Page>
