@@ -14,7 +14,7 @@
         <TextBlock  Style="{DynamicResource CustomFont}"  Text="Полученная прибыль за период времени" Margin="203,10,102,632" Width="731" Height="33" FontSize="30"></TextBlock>
         <TextBlock  Style="{DynamicResource CustomFont}"  Text="Дата начала" Margin="109,49,0,0" Width="282" Height="45" FontSize="30" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
         <TextBlock  Style="{DynamicResource CustomFont}"  Text="Дата окончания" Margin="109,84,0,0" Width="282" Height="33" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBlock>
-        <Button Content="Сформировать" HorizontalAlignment="Left" Click="Все"  Style="{DynamicResource ButtonStyle}" Margin="655,56,0,574" Height="45" Width="170" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Сформировать" HorizontalAlignment="Left" Click="Все"  Style="{DynamicResource ButtonStyle}" Margin="654,60,0,569" Height="46" Width="170" RenderTransformOrigin="-0.573,0.866"/>
         <DataGrid x:Name="DGridRent" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,123,0,135">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название книги" Binding="{Binding Книги.Название}" Width="*"></DataGridTextColumn>

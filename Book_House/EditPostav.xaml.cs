@@ -67,5 +67,10 @@ namespace Book_House
                 MessageBox.Show(ex.Message.ToString());
             }
         }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            Manager.Forma.Navigate(new Postav());
+        }
     }
 }

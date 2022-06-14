@@ -67,7 +67,7 @@ namespace Book_House
 
         private void Exit(object sender, RoutedEventArgs e)
         {
-            Manager.Forma.Navigate(new Accountant());
+            Manager.Forma.Navigate(new Write_offs());
         }
 
     }

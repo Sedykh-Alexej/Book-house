@@ -32,6 +32,7 @@
         <TextBox Text="{Binding кол_во}" Grid.Column="1" Grid.Row="2" Margin="40" Name="Количество"></TextBox>
         <TextBlock Grid.Row="3" Grid.Column="1" Style="{DynamicResource CustomFont}"  Name="id_сотрудника" FontSize="20"></TextBlock>
 
-        <Button Content="Сохранить" Grid.Row="4" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="438,40,434,37" Width="164" Grid.ColumnSpan="2"/>
+        <Button Content="Сохранить" Grid.Row="4" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="309,40,10,37" Width="164" RenderTransformOrigin="-0.007,0.603"/>
+        <Button Content="Отмена" Grid.Row="4" x:Name="Выход" Click="Exit" Style="{DynamicResource ButtonStyle}" Height="58" Margin="90,40,299,37" Width="164" Grid.Column="1" RenderTransformOrigin="0.914,0.46"/>
     </Grid>
 </Page>
