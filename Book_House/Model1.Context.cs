@@ -40,9 +40,9 @@ namespace Book_House
         public virtual DbSet<Жанры> Жанры { get; set; }
         public virtual DbSet<Клиенты> Клиенты { get; set; }
         public virtual DbSet<Книги> Книги { get; set; }
-        public virtual DbSet<Книги_в_аренде> Книги_в_аренде { get; set; }
         public virtual DbSet<Поставки> Поставки { get; set; }
         public virtual DbSet<Поставщики> Поставщики { get; set; }
+        public virtual DbSet<Продажа_книг> Продажа_книг { get; set; }
         public virtual DbSet<Сотрудники> Сотрудники { get; set; }
         public virtual DbSet<Списание_книг> Списание_книг { get; set; }
         public virtual DbSet<Статус> Статус { get; set; }

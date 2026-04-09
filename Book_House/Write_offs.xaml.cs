@@ -58,7 +58,7 @@ namespace Book_House
 
         private void Exit(object sender, RoutedEventArgs e)
         {
-            Manager.Forma.Navigate(new Accountant());
+            Manager.Forma.Navigate(new Chief());
         }
 
         private void Все(object sender, RoutedEventArgs e)

@@ -29,7 +29,7 @@ namespace Book_House
 
         private void Exit(object sender, RoutedEventArgs e)
         {
-            Manager.Forma.Navigate(new Chief());
+            Manager.Forma.Navigate(new Сashier());
         }
 
         private void Обновить(object sender, RoutedEventArgs e)

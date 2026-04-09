@@ -33,11 +33,11 @@ namespace Book_House
             {
                 DateTime Date1 = Convert.ToDateTime(Дата1.Text);
                 DateTime Date2 = Convert.ToDateTime(Дата2.Text);
-                DGridRent.ItemsSource = Book_houseEntities.GetContext().Книги_в_аренде.Where(d => d.Дата_получения > Date1 && d.Дата_получения < Date2).ToList();
+                DGridRent.ItemsSource = Book_houseEntities.GetContext().Продажа_книг.Where(d => d.Дата_продажи > Date1 && d.Дата_продажи < Date2).ToList();
                 if (DGridRent != null)
                 {
                     int Sum;
-                    Sum = (int)Book_houseEntities.GetContext().Книги_в_аренде.Where(d => d.Дата_получения > Date1 && d.Дата_получения < Date2).Sum(c => c.К_оплате);
+                    Sum = (int)Book_houseEntities.GetContext().Продажа_книг.Where(d => d.Дата_продажи > Date1 && d.Дата_продажи < Date2).Sum(c => c.К_оплате);
                     Itog.Text = "Прибыль составляет: " + Sum + " рублей";
                 }
                 else
@@ -54,7 +54,7 @@ namespace Book_House
 
         private void Exit(object sender, RoutedEventArgs e)
         {
-            Manager.Forma.Navigate(new Chief());
+            Manager.Forma.Navigate(new Сashier());
         }
     }
 }

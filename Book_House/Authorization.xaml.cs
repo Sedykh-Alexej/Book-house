@@ -85,7 +85,7 @@ namespace Book_House
                         ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
                         Application.Current.Resources.Clear();
                         Application.Current.Resources.MergedDictionaries.Add(resourceDict);
-                        Manager.Forma.Navigate(new Chief());
+                        Manager.Forma.Navigate(new Сashier());
 
                     }
                     else if (Сотрудник.Должность == 2)
@@ -94,7 +94,7 @@ namespace Book_House
                         ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
                         Application.Current.Resources.Clear();
                         Application.Current.Resources.MergedDictionaries.Add(resourceDict);
-                        Manager.Forma.Navigate(new Accountant());
+                        Manager.Forma.Navigate(new Chief());
                     }
                 }
                 else

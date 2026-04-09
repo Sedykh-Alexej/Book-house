@@ -62,29 +62,34 @@ namespace Book_House
             Manager.Forma.Navigate(new Стили());
         }
 
-        private void Client(object sender, RoutedEventArgs e)
+        private void EditPost(object sender, RoutedEventArgs e)
         {
-            Manager.Forma.Navigate(new Клиенты1());
+            Manager.Forma.Navigate(new Post());
         }
 
-        private void Books(object sender, RoutedEventArgs e)
+        private void EditPostav(object sender, RoutedEventArgs e)
         {
-            Manager.Forma.Navigate(new Book2());
+            Manager.Forma.Navigate(new Postav());
         }
 
-        private void Аренда_книг(object sender, RoutedEventArgs e)
+        private void Write_offs(object sender, RoutedEventArgs e)
         {
-            Manager.Forma.Navigate(new Rent());
+            Manager.Forma.Navigate(new Write_offs());
         }
 
-        private void Sotrudniki(object sender, RoutedEventArgs e)
+        private void Book(object sender, RoutedEventArgs e)
         {
-            Manager.Forma.Navigate(new Sotrudniki());
+            Manager.Forma.Navigate(new Books1());
         }
 
         private void Otchet(object sender, RoutedEventArgs e)
         {
             Manager.Forma.Navigate(new Rent2());
+        }
+
+        private void Sotrudniki(object sender, RoutedEventArgs e)
+        {
+            Manager.Forma.Navigate(new Sotrudniki());
         }
     }
 }

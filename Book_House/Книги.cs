@@ -17,7 +17,7 @@ namespace Book_House
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Книги()
         {
-            this.Книги_в_аренде = new HashSet<Книги_в_аренде>();
+            this.Продажа_книг = new HashSet<Продажа_книг>();
             this.Поставки = new HashSet<Поставки>();
             this.Списание_книг = new HashSet<Списание_книг>();
         }
@@ -33,7 +33,7 @@ namespace Book_House
         public virtual Авторы Авторы { get; set; }
         public virtual Жанры Жанры { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Книги_в_аренде> Книги_в_аренде { get; set; }
+        public virtual ICollection<Продажа_книг> Продажа_книг { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Поставки> Поставки { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

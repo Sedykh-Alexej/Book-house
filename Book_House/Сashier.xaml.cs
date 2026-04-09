@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace Book_House
 {
     /// <summary>
-    /// Логика взаимодействия для Accountant.xaml
+    /// Логика взаимодействия для Сashier.xaml
     /// </summary>
-    public partial class Accountant : Page
+    public partial class Сashier : Page
     {
-        public Accountant()
+        public Сashier()
         {
             InitializeComponent();
             txtRab.Content = "Приветствуем Вас на рабочем месте, " + Manager.IFO + "!";
@@ -62,24 +62,19 @@ namespace Book_House
             Manager.Forma.Navigate(new Стили());
         }
 
-        private void EditPost(object sender, RoutedEventArgs e)
+        private void Client(object sender, RoutedEventArgs e)
         {
-            Manager.Forma.Navigate(new Post());
+            Manager.Forma.Navigate(new Клиенты1());
         }
 
-        private void EditPostav(object sender, RoutedEventArgs e)
+        private void Books(object sender, RoutedEventArgs e)
         {
-            Manager.Forma.Navigate(new Postav());
+            Manager.Forma.Navigate(new Book2());
         }
 
-        private void Write_offs(object sender, RoutedEventArgs e)
+        private void Продажа_книг(object sender, RoutedEventArgs e)
         {
-            Manager.Forma.Navigate(new Write_offs());
-        }
-
-        private void Book(object sender, RoutedEventArgs e)
-        {
-            Manager.Forma.Navigate(new Books1());
+            Manager.Forma.Navigate(new Rent());
         }
     }
 }

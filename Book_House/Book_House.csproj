@@ -156,8 +156,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Accountant.xaml.cs">
-      <DependentUpon>Accountant.xaml</DependentUpon>
+    <Compile Include="Chief.xaml.cs">
+      <DependentUpon>Chief.xaml</DependentUpon>
     </Compile>
     <Compile Include="Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
@@ -174,22 +174,6 @@
     <Compile Include="Calculator2.xaml.cs">
       <DependentUpon>Calculator2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Chief.xaml.cs">
-      <DependentUpon>Chief.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EditingClients.xaml.cs">
-      <DependentUpon>EditingClients.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EditPostav.xaml.cs">
-      <DependentUpon>EditPostav.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EditSotrudniki.xaml.cs">
-      <DependentUpon>EditSotrudniki.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Edit_Write_offs.xaml.cs">
-      <DependentUpon>Edit_Write_offs.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Manager.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -205,6 +189,49 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Авторы.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Должности.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Жанры.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Клиенты.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Книги.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Поставки.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Поставщики.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Продажа_книг.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Сashier.xaml.cs">
+      <DependentUpon>Сashier.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditingClients.xaml.cs">
+      <DependentUpon>EditingClients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditPostav.xaml.cs">
+      <DependentUpon>EditPostav.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditSotrudniki.xaml.cs">
+      <DependentUpon>EditSotrudniki.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Write_offs.xaml.cs">
+      <DependentUpon>Edit_Write_offs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manager.cs" />
     <Compile Include="Post.xaml.cs">
       <DependentUpon>Post.xaml</DependentUpon>
     </Compile>
@@ -226,44 +253,17 @@
     <Compile Include="Sotrudniki.xaml.cs">
       <DependentUpon>Sotrudniki.xaml</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Write_offs.xaml.cs">
       <DependentUpon>Write_offs.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Авторы.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="График_работы.xaml.cs">
       <DependentUpon>График_работы.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Должности.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Жанры.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Изменение_пароля.xaml.cs">
       <DependentUpon>Изменение_пароля.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Клиенты.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Клиенты1.xaml.cs">
       <DependentUpon>Клиенты1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Книги.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Книги_в_аренде.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Поставки.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Поставщики.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Сотрудники.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -277,7 +277,7 @@
     <Compile Include="Стили.xaml.cs">
       <DependentUpon>Стили.xaml</DependentUpon>
     </Compile>
-    <Page Include="Accountant.xaml">
+    <Page Include="Chief.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -301,7 +301,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Chief.xaml">
+    <Page Include="Сashier.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -17,7 +17,7 @@ namespace Book_House
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Клиенты()
         {
-            this.Книги_в_аренде = new HashSet<Книги_в_аренде>();
+            this.Продажа_книг = new HashSet<Продажа_книг>();
         }
     
         public int id { get; set; }
@@ -28,6 +28,6 @@ namespace Book_House
         public string Телефон { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Книги_в_аренде> Книги_в_аренде { get; set; }
+        public virtual ICollection<Продажа_книг> Продажа_книг { get; set; }
     }
 }
