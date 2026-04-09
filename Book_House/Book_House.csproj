@@ -174,9 +174,6 @@
     <Compile Include="Calculator2.xaml.cs">
       <DependentUpon>Calculator2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Cashier.xaml.cs">
-      <DependentUpon>Cashier.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Chief.xaml.cs">
       <DependentUpon>Chief.xaml</DependentUpon>
     </Compile>
@@ -301,10 +298,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Calculator2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Cashier.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

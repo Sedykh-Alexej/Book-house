@@ -96,14 +96,6 @@ namespace Book_House
                         Application.Current.Resources.MergedDictionaries.Add(resourceDict);
                         Manager.Forma.Navigate(new Accountant());
                     }
-                    else
-                    {
-                        var uri = new Uri(Сотрудник.Стиль, UriKind.Relative);
-                        ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
-                        Application.Current.Resources.Clear();
-                        Application.Current.Resources.MergedDictionaries.Add(resourceDict);
-                        Manager.Forma.Navigate(new Cashier());
-                    }
                 }
                 else
                 {
