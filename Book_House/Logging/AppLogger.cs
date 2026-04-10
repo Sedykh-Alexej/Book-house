@@ -27,6 +27,10 @@ namespace Book_House.Logging
             Write("INFO", message);
         }
 
+        public static void Warn(string message)
+        {
+            Write("WARN", message);
+        }
         public static void Error(string message)
         {
             Write("ERROR", message);

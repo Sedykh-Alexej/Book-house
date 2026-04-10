@@ -33,8 +33,10 @@
         <TextBlock Style="{DynamicResource CustomFont}" FontSize="20" Height="23" Margin="183,41,304,49" Width="66" Grid.Column="1" Grid.Row="1" Text="Имя" RenderTransformOrigin="0.515,0.304"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" FontSize="20" Height="30" Margin="132,73,304,10" Width="117" Grid.Column="1" Grid.Row="1" Text="Отчество"></TextBlock>
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="0" Grid.Column="1" Text="" FontSize="30" x:Name="Сотрудник"></TextBlock>
-        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="3" Text="Количество" FontSize="40"></TextBlock>
-
+        <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="3" Text="Количество" FontSize="40"
+                   PreviewTextInput="Количество_PreviewTextInput"
+                   PreviewKeyDown="Количество_PreviewKeyDown"
+                   DataObject.Pasting="Количество_Pasting" />
         <ComboBox SelectedItem="{Binding Клиенты}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Фамилия" x:Name="КлиентФамилия" Margin="249,10,40,77"></ComboBox>
         <ComboBox SelectedItem="{Binding Клиенты}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Имя" x:Name="КлиентИмя" Margin="249,45,40,45" RenderTransformOrigin="0.5,0.5"/>
         <ComboBox SelectedItem="{Binding Клиенты}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Отчество" x:Name="КлиентОтчество" Margin="249,73,40,10"></ComboBox>

@@ -30,6 +30,7 @@
         <TextBox Text="{Binding Адрес}" Grid.Column="1" Grid.Row="1" Margin="40,61,40,62" Name="Адрес" SpellCheck.IsEnabled="True" Language="ru-ru"></TextBox>
         <TextBox Text="{Binding Телефон}" Grid.Column="1" Grid.Row="2" Margin="40,62,40,61" Name="Телефон"></TextBox>
 
-        <Button Content="Сохранить" Grid.Row="3" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="450,62.25,422,48.75" Width="164" RenderTransformOrigin="-0.077,0.482" Grid.ColumnSpan="2"/>
+        <Button Content="Сохранить" Grid.Row="3" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="105,0,0,0" Width="230" RenderTransformOrigin="-0.077,0.482" HorizontalAlignment="Left" Grid.Column="1"/>
+        <Button Content="Выход" HorizontalAlignment="Left" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="160,0,0,0" Height="58" Width="230" Grid.Row="3"/>
     </Grid>
 </Page>

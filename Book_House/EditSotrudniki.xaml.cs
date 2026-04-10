@@ -122,7 +122,7 @@ namespace Book_House
                 AppLogger.Error("Ошибка при отмене изменений сотрудника: " + ex);
             }
 
-            Manager.Forma.Navigate(new Rent());
+            Manager.Forma.Navigate(new Sotrudniki());
         }
     }
 }
