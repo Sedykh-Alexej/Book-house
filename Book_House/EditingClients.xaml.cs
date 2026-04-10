@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Book_House.Logging;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,53 +30,50 @@ namespace Book_House
                 _currentКлиенты = selectedКлиенты;
 
             DataContext = _currentКлиенты;
+            try
+            {
+                AppLogger.Info($"Открытие формы редактирования клиента. Id={_currentКлиенты?.id}");
+            }
+            catch { }
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
+            var errors = new StringBuilder();
 
-            StringBuilder errors = new StringBuilder();
+            // basic validation
             if (string.IsNullOrWhiteSpace(Фамилия.Text))
                 errors.AppendLine("Укажите фамилию");
             if (string.IsNullOrWhiteSpace(Имя.Text))
-                errors.AppendLine("Укажите Имя");
+                errors.AppendLine("Укажите имя");
             if (string.IsNullOrWhiteSpace(Адрес.Text))
-                errors.AppendLine("Укажите Адрес");
+                errors.AppendLine("Укажите адрес");
             if (string.IsNullOrWhiteSpace(Телефон.Text))
-                errors.AppendLine("Укажите Телефон");
-
+                errors.AppendLine("Укажите телефон");
 
             if (errors.Length > 0)
             {
-                MessageBox.Show(errors.ToString());
+                MessageBox.Show(errors.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            if (_currentКлиенты.id == 0)
-            {
-                Book_houseEntities.GetContext().Клиенты.Add(_currentКлиенты);
-            }
-
-
-            string resultString = string.Join(string.Empty, Regex.Matches(Телефон.Text, @"\d+").OfType<Match>().Select(m => m.Value));
-            if (resultString.Length != 11)
+            // normalize phone: extract digits
+            var digits = string.Join(string.Empty, Regex.Matches(Телефон.Text ?? string.Empty, "\\d+").OfType<Match>().Select(m => m.Value));
+            if (digits.Length != 11)
                 errors.AppendLine("Проверьте кол-во цифр в номере");
-            if (resultString[0] == '7')
-            {
-                _currentКлиенты.Телефон = Regex.Replace(resultString, @"(\d{1})(\d{3})(\d{0,3})(\d{0,2})(\d{0,2})", "+$1($2)$3-$4-$5");
-            }
-            else if (resultString[0] == '8')
-            {
-                _currentКлиенты.Телефон = Regex.Replace(resultString, @"(\d{1})(\d{3})(\d{0,3})(\d{0,2})(\d{0,2})", "$1($2)$3-$4-$5");
-            }
             else
             {
-                errors.AppendLine("Номер должен начинаться с +7 или 8");
+                if (digits[0] == '7')
+                    _currentКлиенты.Телефон = Regex.Replace(digits, "(\\d{1})(\\d{3})(\\d{0,3})(\\d{0,2})(\\d{0,2})", "+$1($2)$3-$4-$5");
+                else if (digits[0] == '8')
+                    _currentКлиенты.Телефон = Regex.Replace(digits, "(\\d{1})(\\d{3})(\\d{0,3})(\\d{0,2})(\\d{0,2})", "$1($2)$3-$4-$5");
+                else
+                    errors.AppendLine("Номер должен начинаться с 7 или 8");
             }
 
             if (errors.Length > 0)
             {
-                MessageBox.Show(errors.ToString());
+                MessageBox.Show(errors.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -84,12 +82,18 @@ namespace Book_House
                 if (string.IsNullOrWhiteSpace(Отчество.Text))
                     _currentКлиенты.Отчество = "Нет";
 
-                Book_houseEntities.GetContext().SaveChanges();
+                var context = Book_houseEntities.GetContext();
+                if (_currentКлиенты.id == 0)
+                    context.Клиенты.Add(_currentКлиенты);
+
+                context.SaveChanges();
+                AppLogger.Info($"Клиент сохранён. Id={_currentКлиенты.id}, ФИО={_currentКлиенты.Фамилия} {_currentКлиенты.Имя}");
                 Manager.Forma.Navigate(new Клиенты1());
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                AppLogger.Error("Ошибка сохранения клиента: " + ex);
+                MessageBox.Show("Произошла ошибка при сохранении. Обратитесь к администратору.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
