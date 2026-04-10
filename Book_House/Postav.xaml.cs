@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Book_House.Logging;
 
 namespace Book_House
 {
@@ -23,12 +24,22 @@ namespace Book_House
         public Postav()
         {
             InitializeComponent();
-            Поставщики.ItemsSource = Book_houseEntities.GetContext().Поставщики.ToList();
-            Книги.ItemsSource = Book_houseEntities.GetContext().Книги.ToList();
+            try
+            {
+                Поставщики.ItemsSource = Book_houseEntities.GetContext().Поставщики.ToList();
+                Книги.ItemsSource = Book_houseEntities.GetContext().Книги.ToList();
+                AppLogger.Info("Открыта страница Поставки");
+            }
+            catch (Exception ex)
+            {
+                AppLogger.Error("Ошибка при загрузке данных на странице Поставки: " + ex);
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Ошибка при загрузке данных. Подробнее в логе.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BtnAdd_click(object sender, RoutedEventArgs e)
         {
+            AppLogger.Info("Переход на страницу добавления поставки");
             Manager.Forma.Navigate(new EditPostav());
         }
 
@@ -37,22 +48,28 @@ namespace Book_House
         private void BtnDelete_click(object sender, RoutedEventArgs e)
         {
             var PostForRemoving = DGridPost.SelectedItems.Cast<Поставки>().ToList();
-
-            if (MessageBox.Show($"Вы точно хотите удалить следующее {PostForRemoving.Count()} элементов?", "Внимание",
-                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (!PostForRemoving.Any())
             {
-                try
-                {
-                    Book_houseEntities.GetContext().Поставки.RemoveRange(PostForRemoving);
-                    Book_houseEntities.GetContext().SaveChanges();
-                    MessageBox.Show("Данные удалены!");
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Выберите элементы для удаления.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
 
-                    DGridPost.ItemsSource = Book_houseEntities.GetContext().Поставки.ToList();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message.ToString());
-                }
+            var confirm = Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), $"Вы точно хотите удалить следующее {PostForRemoving.Count()} элементов?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (confirm != MessageBoxResult.Yes)
+                return;
+
+            try
+            {
+                Book_houseEntities.GetContext().Поставки.RemoveRange(PostForRemoving);
+                Book_houseEntities.GetContext().SaveChanges();
+                AppLogger.Info($"Удалено записей поставок: {PostForRemoving.Count}");
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Данные удалены!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                DGridPost.ItemsSource = Book_houseEntities.GetContext().Поставки.ToList();
+            }
+            catch (Exception ex)
+            {
+                AppLogger.Error("Ошибка при удалении поставок: " + ex);
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Ошибка при удалении. Подробнее в логе.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -63,54 +80,81 @@ namespace Book_House
 
         private void Все(object sender, RoutedEventArgs e)
         {
-            DGridPost.ItemsSource = Book_houseEntities.GetContext().Поставки.ToList();
+            try
+            {
+                DGridPost.ItemsSource = Book_houseEntities.GetContext().Поставки.ToList();
+                AppLogger.Info("Загружены все поставки");
+            }
+            catch (Exception ex)
+            {
+                AppLogger.Error("Ошибка при загрузке всех поставок: " + ex);
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Ошибка при загрузке данных. Подробнее в логе.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Обновить(object sender, RoutedEventArgs e)
         {
-            StringBuilder errors = new StringBuilder();
+            var errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(Поставщики.Text))
                 errors.AppendLine("Укажите поставщика");
 
-
             if (errors.Length > 0)
             {
-                MessageBox.Show(errors.ToString());
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), errors.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                AppLogger.Warn($"Валидация фильтра поставщиков не пройдена: {errors}");
                 return;
             }
 
             try
             {
-                var Поставщик = Book_houseEntities.GetContext().Поставщики.Where(d => d.Наименование == Поставщики.Text).FirstOrDefault();
-                DGridPost.ItemsSource = Book_houseEntities.GetContext().Поставки.Where(d => d.id_Поставщика == Поставщик.id).ToList();
+                var ctx = Book_houseEntities.GetContext();
+                var Поставщик = ctx.Поставщики.FirstOrDefault(d => d.Наименование == Поставщики.Text);
+                if (Поставщик == null)
+                {
+                    Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Поставщик не найден", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    AppLogger.Warn($"Поставщик для фильтра не найден: {Поставщики.Text}");
+                    return;
+                }
+                DGridPost.ItemsSource = ctx.Поставки.Where(d => d.id_Поставщика == Поставщик.id).ToList();
+                AppLogger.Info($"Фильтр поставок по поставщику: {Поставщик.Наименование}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                AppLogger.Error("Ошибка при фильтрации поставок: " + ex);
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Ошибка при фильтрации. Подробнее в логе.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void Обновить2(object sender, RoutedEventArgs e)
         {
-            StringBuilder errors = new StringBuilder();
+            var errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(Книги.Text))
                 errors.AppendLine("Укажите книгу");
 
-
             if (errors.Length > 0)
             {
-                MessageBox.Show(errors.ToString());
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), errors.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                AppLogger.Warn($"Валидация фильтра книги не пройдена: {errors}");
                 return;
             }
 
             try
             {
-                var Книга = Book_houseEntities.GetContext().Книги.Where(d => d.Название == Книги.Text).FirstOrDefault();
-                DGridPost.ItemsSource = Book_houseEntities.GetContext().Поставки.Where(d => d.id_Книги == Книга.id).ToList();
+                var ctx = Book_houseEntities.GetContext();
+                var Книга = ctx.Книги.FirstOrDefault(d => d.Название == Книги.Text);
+                if (Книга == null)
+                {
+                    Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Книга не найдена", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    AppLogger.Warn($"Книга для фильтра не найдена: {Книги.Text}");
+                    return;
+                }
+                DGridPost.ItemsSource = ctx.Поставки.Where(d => d.id_Книги == Книга.id).ToList();
+                AppLogger.Info($"Фильтр поставок по книге: {Книга.Название}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                AppLogger.Error("Ошибка при фильтрации поставок по книге: " + ex);
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Ошибка при фильтрации. Подробнее в логе.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

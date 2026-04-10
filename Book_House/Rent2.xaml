@@ -14,7 +14,8 @@
         <TextBlock  Style="{DynamicResource CustomFont}"  Text="Полученная прибыль за период времени" Margin="203,10,102,632" Width="731" Height="33" FontSize="30"></TextBlock>
         <TextBlock  Style="{DynamicResource CustomFont}"  Text="Дата начала" Margin="109,49,0,0" Width="282" Height="45" FontSize="30" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
         <TextBlock  Style="{DynamicResource CustomFont}"  Text="Дата окончания" Margin="109,84,0,0" Width="282" Height="33" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBlock>
-        <Button Content="Сформировать" HorizontalAlignment="Left" Click="Все"  Style="{DynamicResource ButtonStyle}" Margin="654,60,0,569" Height="46" Width="170" RenderTransformOrigin="-0.573,0.866"/>
+        <Button Content="Сформировать" HorizontalAlignment="Left" Click="Все"  Style="{DynamicResource ButtonStyle}" Margin="635,60,0,0" Height="46" Width="170" RenderTransformOrigin="-0.573,0.866" VerticalAlignment="Top"/>
+        <Button Content="Экспорт в Excel" HorizontalAlignment="Left" Click="Export_Click"  Style="{DynamicResource ButtonStyle}" Margin="830,60,0,0" Height="46" Width="196" RenderTransformOrigin="-0.573,0.866" VerticalAlignment="Top"/>
         <DataGrid x:Name="DGridRent" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,123,0,135">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название книги" Binding="{Binding Книги.Название}" Width="*"></DataGridTextColumn>
@@ -22,12 +23,12 @@
                 <DataGridTextColumn Header="Имя клиента" Binding="{Binding Клиенты.Имя}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Отчество клиента" Binding="{Binding Клиенты.Отчество}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Количество" Binding="{Binding Количество}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Стоимость аренды за месяц" Binding="{Binding Книги.Цена}" Width="250"></DataGridTextColumn>
+                <DataGridTextColumn Header="Стоимость продажи" Binding="{Binding Книги.Цена}" Width="250"></DataGridTextColumn>
                 <DataGridTextColumn Header="Итого" Binding="{Binding К_оплате}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Выход" HorizontalAlignment="Center" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="405,615,401,10" Height="50" Width="230" RenderTransformOrigin="-0.573,0.866"/>
-        <TextBox  Grid.Row="0" Margin="391,48,406,594" x:Name="Дата1" SpellCheck.IsEnabled="True" Language="ru-ru"/>
-        <TextBox  Grid.Row="0" Margin="391,85,406,557" x:Name="Дата2" SpellCheck.IsEnabled="True" Language="ru-ru"/>
+        <DatePicker Grid.Row="0" Margin="391,48,406,594" x:Name="Дата1" SelectedDateFormat="Short" Language="ru-ru" />
+        <DatePicker Grid.Row="0" Margin="391,85,406,557" x:Name="Дата2" SelectedDateFormat="Short" Language="ru-ru" />
     </Grid>
 </Page>
