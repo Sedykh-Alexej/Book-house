@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Book_House.Logging;
 
 namespace Book_House
 {
@@ -20,52 +12,61 @@ namespace Book_House
     /// </summary>
     public partial class Authorization : Page
     {
-        public List<string> namelist;
-        public Book_houseEntities db;
+        private List<string> _nameList;
+
         public Authorization()
         {
             InitializeComponent();
+
+            _nameList = new List<string>();
+
+            try { if (BtnLogin != null) BtnLogin.IsEnabled = false; } catch { }
+
+            try { if (outText != null) outText.TextChanged += OutText_TextChanged; } catch { }
+
             try
             {
-                db = new Book_houseEntities();
-                namelist = new List<string>();
-                foreach (var item in db.Сотрудники)
+                using (var ctx = new Book_houseEntities())
                 {
-                    namelist.Add(item.Фамилия + " " + item.Имя + " " + item.Отчество);
+                    _nameList = ctx.Сотрудники
+                        .Select(s => s.Фамилия + " " + s.Имя + " " + s.Отчество)
+                        .ToList();
                 }
             }
-            catch (Exception er)
+            catch (Exception ex)
             {
-                MessageBox.Show(er.ToString());
+                AppLogger.Error("Не удалось загрузить список сотрудников: " + ex);
+                _nameList = new List<string>();
+                try { FeedbackText.Text = "Не удалось загрузить список сотрудников."; } catch { }
             }
+        }
+
+        private void OutText_TextChanged(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                BtnLogin.IsEnabled = !string.IsNullOrEmpty(PasswordBoxx.Password) && !string.IsNullOrEmpty(outText.Text);
+                FeedbackText.Text = string.Empty;
+            }
+            catch { }
         }
 
         private void Populating(object sender, PopulatingEventArgs e)
         {
             try
             {
-                string txt = outText.Text;
-                List<string> outoList = new List<string>();
-                outoList.Clear();
-                if (namelist != null)
-                {
-                    foreach (string item in namelist)
-                    {
-                        if (!string.IsNullOrEmpty(outText.Text))
-                        {
-                            if (item.ToLower().StartsWith(txt.ToLower()))
-                            {
-                                outoList.Add(item);
-                            }
-                        }
-                    }
-                    outText.ItemsSource = outoList;
-                    outText.PopulateComplete();
-                }
+                var txt = outText.Text ?? string.Empty;
+                var list = string.IsNullOrWhiteSpace(txt)
+                    ? new List<string>()
+                    : _nameList.Where(x => x.StartsWith(txt, StringComparison.OrdinalIgnoreCase)).ToList();
+
+                outText.ItemsSource = list;
+                outText.PopulateComplete();
             }
-            catch (Exception er)
+            catch (Exception ex)
             {
-                MessageBox.Show(er.ToString());
+                AppLogger.Error("Ошибка автодополнения: " + ex);
+                try { FeedbackText.Text = "Ошибка автодополнения."; } catch { }
             }
         }
 
@@ -73,40 +74,64 @@ namespace Book_House
         {
             try
             {
-                var Сотрудник = db.Сотрудники.Where(d => (d.Фамилия.ToLower() + " " + d.Имя.ToLower() + " " + d.Отчество.ToLower()).Equals(outText.Text.ToLower())
-                && d.Пароль == PasswordBoxx.Password).FirstOrDefault();
-                if (Сотрудник != null)
+                string login = (outText.Text ?? string.Empty).Trim();
+                using (var ctx = new Book_houseEntities())
                 {
-                    Manager.IDSotr = Сотрудник.id;
-                    Manager.IFO = Сотрудник.Фамилия + " " + Сотрудник.Имя + " " + Сотрудник.Отчество;
-                    if (Сотрудник.Должность == 1)
-                    {
-                        var uri = new Uri(Сотрудник.Стиль, UriKind.Relative);
-                        ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
-                        Application.Current.Resources.Clear();
-                        Application.Current.Resources.MergedDictionaries.Add(resourceDict);
-                        Manager.Forma.Navigate(new Сashier());
+                    var emp = ctx.Сотрудники
+                        .FirstOrDefault(d => (d.Фамилия + " " + d.Имя + " " + d.Отчество).Equals(login, StringComparison.OrdinalIgnoreCase)
+                                             && d.Пароль == PasswordBoxx.Password);
 
-                    }
-                    else if (Сотрудник.Должность == 2)
+                    if (emp == null)
                     {
-                        var uri = new Uri(Сотрудник.Стиль, UriKind.Relative);
-                        ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
-                        Application.Current.Resources.Clear();
-                        Application.Current.Resources.MergedDictionaries.Add(resourceDict);
-                        Manager.Forma.Navigate(new Chief());
+                        AppLogger.Info("Неудачная попытка входа: " + login);
+                        try { FeedbackText.Text = "Неверное имя пользователя или пароль."; } catch { }
+                        return;
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Проверьте правильность ввода имени пользователя и пароля!");
+
+                    Manager.IDSotr = emp.id;
+                    Manager.IFO = emp.Фамилия + " " + emp.Имя + " " + emp.Отчество;
+
+                    if (!string.IsNullOrWhiteSpace(emp.Стиль))
+                    {
+                        try
+                        {
+                            var uri = new Uri(emp.Стиль, UriKind.Relative);
+                            var dict = Application.LoadComponent(uri) as ResourceDictionary;
+                            if (dict != null)
+                            {
+                                Application.Current.Resources.Clear();
+                                Application.Current.Resources.MergedDictionaries.Add(dict);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            AppLogger.Error("Ошибка загрузки стиля: " + ex);
+                        }
+                    }
+
+                    if (emp.Должность == 1)
+                        Manager.Forma.Navigate(new Сashier());
+                    else if (emp.Должность == 2)
+                        Manager.Forma.Navigate(new Chief());
                 }
             }
-            catch (Exception er)
+            catch (Exception ex)
             {
-                MessageBox.Show(er.ToString());
+                AppLogger.Error("Ошибка входа: " + ex);
+                try { FeedbackText.Text = "Ошибка при входе. Обратитесь к администратору."; } catch { }
             }
         }
+
+        private void PasswordBoxx_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                BtnLogin.IsEnabled = !string.IsNullOrEmpty(PasswordBoxx.Password) && !string.IsNullOrEmpty(outText.Text);
+                FeedbackText.Text = string.Empty;
+            }
+            catch { }
+        }
+
         private void Exit(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
