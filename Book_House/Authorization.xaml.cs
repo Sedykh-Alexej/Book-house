@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Book_House.Logging;
+using Book_House.Security;
 
 namespace Book_House
 {
@@ -75,15 +76,23 @@ namespace Book_House
             try
             {
                 string login = (outText.Text ?? string.Empty).Trim();
+                string providedPassword = PasswordBoxx.Password ?? string.Empty;
+
                 using (var ctx = new Book_houseEntities())
                 {
                     var emp = ctx.Сотрудники
-                        .FirstOrDefault(d => (d.Фамилия + " " + d.Имя + " " + d.Отчество).Equals(login, StringComparison.OrdinalIgnoreCase)
-                                             && d.Пароль == PasswordBoxx.Password);
+                        .FirstOrDefault(d => (d.Фамилия + " " + d.Имя + " " + d.Отчество).Equals(login, StringComparison.OrdinalIgnoreCase));
 
                     if (emp == null)
                     {
-                        AppLogger.Info("Неудачная попытка входа: " + login);
+                        AppLogger.Info("Неудачная попытка входа (пользователь не найден): " + login);
+                        try { FeedbackText.Text = "Неверное имя пользователя или пароль."; } catch { }
+                        return;
+                    }
+
+                    if (!PasswordHelper.VerifyPassword(emp.Пароль, providedPassword))
+                    {
+                        AppLogger.Info("Неудачная попытка входа (неверный пароль): " + login);
                         try { FeedbackText.Text = "Неверное имя пользователя или пароль."; } catch { }
                         return;
                     }

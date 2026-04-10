@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Book_House.Logging;
+using Book_House.Security;
 
 namespace Book_House
 {
@@ -33,7 +26,7 @@ namespace Book_House
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
 
-            StringBuilder errors = new StringBuilder();
+            var errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(PasswordBoxx.Password))
                 errors.AppendLine("Укажите пароль пожалуйста");
             if (string.IsNullOrWhiteSpace(PasswordBox.Password))
@@ -43,31 +36,37 @@ namespace Book_House
 
             if (errors.Length > 0)
             {
-                MessageBox.Show(errors.ToString());
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), errors.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             try
             {
-                var Сотрудник = Book_houseEntities.GetContext().Сотрудники.Where(d => (d.id == Manager.IDSotr)).FirstOrDefault();
-                
-
-                if (Сотрудник.Пароль == PasswordBoxx.Password)
-                    errors.AppendLine("Пароль совпадает с предыдущим");
-                if (errors.Length > 0)
+                var ctx = Book_houseEntities.GetContext();
+                var employee = ctx.Сотрудники.FirstOrDefault(d => d.id == Manager.IDSotr);
+                if (employee == null)
                 {
-                    MessageBox.Show(errors.ToString());
+                    AppLogger.Error($"Сотрудник с Id={Manager.IDSotr} не найден при смене пароля");
+                    Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Пользователь не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                Сотрудник.Пароль = PasswordBoxx.Password;
-                Book_houseEntities.GetContext().SaveChanges();
-                MessageBox.Show("Пароль обновлён!");
+                if (PasswordHelper.VerifyPassword(employee.Пароль, PasswordBoxx.Password))
+                {
+                    Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Пароль совпадает с предыдущим", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                employee.Пароль = PasswordHelper.HashPassword(PasswordBoxx.Password);
+                ctx.SaveChanges();
+                AppLogger.Info($"Сотрудник Id={employee.id} обновил пароль");
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Пароль обновлён!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                 Manager.Forma.GoBack();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                AppLogger.Error("Ошибка при смене пароля: " + ex);
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Ошибка при смене пароля. Подробнее в логе.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

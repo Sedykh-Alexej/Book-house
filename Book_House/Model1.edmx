@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Book_houseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище Book_houseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -103,7 +103,7 @@
           <Property Name="Должность" Type="int" Nullable="false" />
           <Property Name="Адрес" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Телефон" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Пароль" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Пароль" Type="varchar(max)" Nullable="false" />
           <Property Name="Стиль" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="График_работы" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -133,54 +133,6 @@
             </Principal>
             <Dependent Role="Книги">
               <PropertyRef Name="Автор" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Книги_в_аренде_Клиенты">
-          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
-          <End Role="Продажа_книг" Type="Self.Продажа_книг" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Клиенты">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Продажа_книг">
-              <PropertyRef Name="id_Клиента" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Книги_в_аренде_Книги">
-          <End Role="Книги" Type="Self.Книги" Multiplicity="0..1" />
-          <End Role="Продажа_книг" Type="Self.Продажа_книг" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Книги">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Продажа_книг">
-              <PropertyRef Name="id_Книги" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Книги_в_аренде_Сотрудники">
-          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
-          <End Role="Продажа_книг" Type="Self.Продажа_книг" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Сотрудники">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Продажа_книг">
-              <PropertyRef Name="id_Сотрудника" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Книги_в_аренде_Статус">
-          <End Role="Статус" Type="Self.Статус" Multiplicity="1" />
-          <End Role="Продажа_книг" Type="Self.Продажа_книг" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Статус">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Продажа_книг">
-              <PropertyRef Name="Статус" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -232,6 +184,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Продажа_книг_Клиенты">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Продажа_книг" Type="Self.Продажа_книг" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Продажа_книг">
+              <PropertyRef Name="id_Клиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Продажа_книг_Книги">
+          <End Role="Книги" Type="Self.Книги" Multiplicity="0..1" />
+          <End Role="Продажа_книг" Type="Self.Продажа_книг" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Книги">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Продажа_книг">
+              <PropertyRef Name="id_Книги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Продажа_книг_Статус">
+          <End Role="Статус" Type="Self.Статус" Multiplicity="1" />
+          <End Role="Продажа_книг" Type="Self.Продажа_книг" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Статус">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Продажа_книг">
+              <PropertyRef Name="Статус" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Сотрудники_Должности">
           <End Role="Должности" Type="Self.Должности" Multiplicity="1" />
           <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="*" />
@@ -256,18 +244,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Списание_книг_Сотрудники">
-          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
-          <End Role="Списание_книг" Type="Self.Списание_книг" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Сотрудники">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Списание_книг">
-              <PropertyRef Name="id_сотрудника" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Хранилище Book_houseModelContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Авторы" EntityType="Self.Авторы" Schema="dbo" store:Type="Tables" />
@@ -285,22 +261,6 @@
             <End Role="Авторы" EntitySet="Авторы" />
             <End Role="Книги" EntitySet="Книги" />
           </AssociationSet>
-          <AssociationSet Name="FK_Книги_в_аренде_Клиенты" Association="Self.FK_Книги_в_аренде_Клиенты">
-            <End Role="Клиенты" EntitySet="Клиенты" />
-            <End Role="Продажа_книг" EntitySet="Продажа_книг" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Книги_в_аренде_Книги" Association="Self.FK_Книги_в_аренде_Книги">
-            <End Role="Книги" EntitySet="Книги" />
-            <End Role="Продажа_книг" EntitySet="Продажа_книг" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Книги_в_аренде_Сотрудники" Association="Self.FK_Книги_в_аренде_Сотрудники">
-            <End Role="Сотрудники" EntitySet="Сотрудники" />
-            <End Role="Продажа_книг" EntitySet="Продажа_книг" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Книги_в_аренде_Статус" Association="Self.FK_Книги_в_аренде_Статус">
-            <End Role="Статус" EntitySet="Статус" />
-            <End Role="Продажа_книг" EntitySet="Продажа_книг" />
-          </AssociationSet>
           <AssociationSet Name="FK_Книги_Жанры" Association="Self.FK_Книги_Жанры">
             <End Role="Жанры" EntitySet="Жанры" />
             <End Role="Книги" EntitySet="Книги" />
@@ -317,6 +277,18 @@
             <End Role="Сотрудники" EntitySet="Сотрудники" />
             <End Role="Поставки" EntitySet="Поставки" />
           </AssociationSet>
+          <AssociationSet Name="FK_Продажа_книг_Клиенты" Association="Self.FK_Продажа_книг_Клиенты">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Продажа_книг" EntitySet="Продажа_книг" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Продажа_книг_Книги" Association="Self.FK_Продажа_книг_Книги">
+            <End Role="Книги" EntitySet="Книги" />
+            <End Role="Продажа_книг" EntitySet="Продажа_книг" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Продажа_книг_Статус" Association="Self.FK_Продажа_книг_Статус">
+            <End Role="Статус" EntitySet="Статус" />
+            <End Role="Продажа_книг" EntitySet="Продажа_книг" />
+          </AssociationSet>
           <AssociationSet Name="FK_Сотрудники_Должности" Association="Self.FK_Сотрудники_Должности">
             <End Role="Должности" EntitySet="Должности" />
             <End Role="Сотрудники" EntitySet="Сотрудники" />
@@ -325,13 +297,8 @@
             <End Role="Книги" EntitySet="Книги" />
             <End Role="Списание_книг" EntitySet="Списание_книг" />
           </AssociationSet>
-          <AssociationSet Name="FK_Списание_книг_Сотрудники" Association="Self.FK_Списание_книг_Сотрудники">
-            <End Role="Сотрудники" EntitySet="Сотрудники" />
-            <End Role="Списание_книг" EntitySet="Списание_книг" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Book_houseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -450,7 +417,7 @@
           <Property Name="Должность" Type="Int32" Nullable="false" />
           <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Пароль" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Пароль" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Стиль" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="График_работы" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Должности" Relationship="Self.FK_Сотрудники_Должности" FromRole="Сотрудники" ToRole="Должности" />

@@ -23,7 +23,7 @@
         <Button Content="Поставки"  Style="{DynamicResource ButtonStyle}" Margin="683,107,0,0" Height="58" Width="284" Click="EditPostav" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Button Content="Cписание книг"  Style="{DynamicResource ButtonStyle}" Margin="342,198,0,0" Height="58" Width="284" Click="Write_offs" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Button Content="Ревизия книг"  Style="{DynamicResource ButtonStyle}" Margin="683,198,0,0" Height="58" Width="284" Click="Book" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Button Content="Отчёт по прибыли за период времени"  Style="{DynamicResource ButtonStyle}" Margin="432,414,0,0" Width="466" Height="66" Click="Otchet" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Button Content="Сотрудники"  Style="{DynamicResource ButtonStyle}"   Width="280" Height="66" Click="Sotrudniki" HorizontalAlignment="Left" Margin="342,298,0,0" VerticalAlignment="Top"/>
+        <Button Content="Отчёт по прибыли за период времени"  Style="{DynamicResource ButtonStyle}" Margin="432,446,0,0" Width="466" Height="66" Click="Otchet" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Content="Сотрудники"  Style="{DynamicResource ButtonStyle}"   Width="280" Height="66" Click="Sotrudniki" HorizontalAlignment="Left" Margin="525,0,0,0" RenderTransformOrigin="0.661,0.423"/>
     </Grid>
 </Page>

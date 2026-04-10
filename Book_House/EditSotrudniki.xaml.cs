@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Book_House.Logging;
 
 namespace Book_House
 {
@@ -53,13 +46,13 @@ namespace Book_House
 
             if (errors.Length > 0)
             {
-                MessageBox.Show(errors.ToString());
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), errors.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (_currentСотрудники.id == 0)
             {
-                _currentСотрудники.Пароль = "1234";
+                _currentСотрудники.Пароль = Book_House.Security.PasswordHelper.HashPassword("1234");
                 _currentСотрудники.Стиль = "Second_style.xaml";
                 Book_houseEntities.GetContext().Сотрудники.Add(_currentСотрудники);
             }
@@ -84,7 +77,7 @@ namespace Book_House
 
             if (errors.Length > 0)
             {
-                MessageBox.Show(errors.ToString());
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), errors.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -93,13 +86,43 @@ namespace Book_House
             {
                 if (string.IsNullOrWhiteSpace(Отчество.Text))
                     _currentСотрудники.Отчество = "Нет";
+
                 Book_houseEntities.GetContext().SaveChanges();
+                AppLogger.Info($"Сотрудник сохранён. Id={_currentСотрудники.id}, ФИО={_currentСотрудники.Фамилия} {_currentСотрудники.Имя}");
                 Manager.Forma.Navigate(new Sotrudniki());
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                AppLogger.Error("Ошибка при сохранении сотрудника: " + ex);
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Ошибка при сохранении. Подробнее в логе.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var ctx = Book_houseEntities.GetContext();
+                var entry = ctx.Entry(_currentСотрудники);
+                if (entry != null)
+                {
+                    if (entry.State == EntityState.Added)
+                    {
+                        entry.State = EntityState.Detached;
+                    }
+                    else if (entry.State == EntityState.Modified)
+                    {
+
+                        try { entry.Reload(); } catch { }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                AppLogger.Error("Ошибка при отмене изменений сотрудника: " + ex);
+            }
+
+            Manager.Forma.Navigate(new Rent());
         }
     }
 }
