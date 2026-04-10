@@ -136,7 +136,7 @@ namespace Book_House
                 AppLogger.Error("Ошибка при отмене изменений поставщика: " + ex);
             }
 
-            Manager.Forma.Navigate(new Rent());
+            Manager.Forma.Navigate(new Post());
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Book_House.Logging;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,12 +32,21 @@ namespace Book_House
                 _currentКниги = selectedКниги;
 
             DataContext = _currentКниги;
-            Жанр.ItemsSource = Book_houseEntities.GetContext().Жанры.ToList();
-            db = new Book_houseEntities();
-            namelist = new List<string>();
-            foreach (var item in db.Авторы)
+            try
             {
-                namelist.Add(item.Автор1);
+                Жанр.ItemsSource = Book_houseEntities.GetContext().Жанры.ToList();
+                db = new Book_houseEntities();
+                namelist = new List<string>();
+                foreach (var item in db.Авторы)
+                {
+                    namelist.Add(item.Автор1);
+                }
+                AppLogger.Info($"Открыта страница редактирования книги Id={_currentКниги.id}");
+            }
+            catch (Exception ex)
+            {
+                AppLogger.Error("Ошибка при инициализации BookEdit: " + ex);
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Ошибка при загрузке данных. Подробнее в логе.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -64,12 +75,13 @@ namespace Book_House
             }
             catch (Exception er)
             {
-                MessageBox.Show(er.ToString());
+                AppLogger.Error("Ошибка при автоподборе автора: " + er);
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Ошибка автодополнения. Подробнее в логе.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            StringBuilder errors = new StringBuilder();
+            var errors = new StringBuilder();
 
             if (string.IsNullOrWhiteSpace(_currentКниги.Название))
                 errors.AppendLine("Укажите название");
@@ -86,38 +98,108 @@ namespace Book_House
             if (string.IsNullOrWhiteSpace(outAvtor.Text))
                 errors.AppendLine("Укажите автора");
 
-
             if (errors.Length > 0)
             {
-                MessageBox.Show(errors.ToString());
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), errors.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                AppLogger.Warn($"Валидация книги не пройдена: {errors}");
                 return;
-            }
-
-
-            if (_currentКниги.id == 0)
-            {
-                Book_houseEntities.GetContext().Книги.Add(_currentКниги);
             }
 
             try
             {
-                var Avtor = Book_houseEntities.GetContext().Авторы.Where(d => d.Автор1 == outAvtor.Text).FirstOrDefault();
+                var ctx = Book_houseEntities.GetContext();
+                if (_currentКниги.id == 0)
+                {
+                    ctx.Книги.Add(_currentКниги);
+                    AppLogger.Info("Добавлена новая книга в контекст");
+                }
+
+                var Avtor = ctx.Авторы.FirstOrDefault(d => d.Автор1 == outAvtor.Text);
                 if (Avtor == null)
                 {
                     Авторы Avtorr = new Авторы(0, outAvtor.Text);
-                    Book_houseEntities.GetContext().Авторы.Add(Avtorr);
+                    ctx.Авторы.Add(Avtorr);
+                    ctx.SaveChanges();
                     _currentКниги.Автор = Avtorr.id_Автора;
+                    AppLogger.Info($"Добавлен новый автор: {outAvtor.Text}");
                 }
                 else
                 {
                     _currentКниги.Автор = Avtor.id_Автора;
                 }
-                Book_houseEntities.GetContext().SaveChanges();
-                Manager.Forma.Navigate(new Books1());
+
+                try
+                {
+                    ctx.SaveChanges();
+                    AppLogger.Info($"Книга сохранена Id={_currentКниги.id}");
+                    Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Данные книги сохранены", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Manager.Forma.Navigate(new Books1());
+                }
+                catch (Exception ex)
+                {
+                    AppLogger.Error("Ошибка при сохранении книги: " + ex);
+                    Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Ошибка при сохранении книги. Подробнее в логе.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                AppLogger.Error("Ошибка при подготовке данных для сохранения книги: " + ex);
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Ошибка при обработке данных. Подробнее в логе.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var ctx = Book_houseEntities.GetContext();
+                var entry = ctx.Entry(_currentКниги);
+                if (entry != null)
+                {
+                    if (entry.State == EntityState.Added)
+                    {
+                        entry.State = EntityState.Detached;
+                    }
+                    else if (entry.State == EntityState.Modified)
+                    {
+
+                        try { entry.Reload(); } catch { }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                AppLogger.Error("Ошибка при отмене изменений книг: " + ex);
+            }
+
+            Manager.Forma.Navigate(new Books1());
+        }
+
+        private void Количество_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = !e.Text.All(char.IsDigit);
+        }
+
+        private void Количество_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            // Запрещаем пробел
+            if (e.Key == System.Windows.Input.Key.Space)
+                e.Handled = true;
+        }
+
+        private void Количество_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(DataFormats.Text))
+            {
+                var text = e.DataObject.GetData(DataFormats.Text) as string;
+                if (!text.All(char.IsDigit))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
             }
         }
     }

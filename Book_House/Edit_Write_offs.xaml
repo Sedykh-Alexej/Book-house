@@ -29,11 +29,14 @@
         <TextBlock Style="{DynamicResource CustomFont}" Grid.Row="3" Text="Причина" FontSize="40"></TextBlock>
 
         <ComboBox Grid.Column="1" Grid.Row="0" DisplayMemberPath="Название" x:Name="Название" Margin="40"></ComboBox>
-        <TextBox Text="{Binding Количество}" Grid.Column="1" Grid.Row="1" Margin="40" Name="Количество"></TextBox>
+        <TextBox Text="{Binding Количество}" Grid.Column="1" Grid.Row="1" Margin="40" Name="Количество"
+                 PreviewTextInput="Количество_PreviewTextInput"
+                 PreviewKeyDown="Количество_PreviewKeyDown"
+                 DataObject.Pasting="Количество_Pasting" />
         <TextBlock Grid.Row="2" Grid.Column="1" Style="{DynamicResource CustomFont}"  Name="id_сотрудника" FontSize="20"></TextBlock>
 
-        <Button Content="Сохранить" Grid.Row="4" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="269,44,50,33" Width="164"/>
-        <Button Content="Отмена" Grid.Row="4" x:Name="Выход" Click="Exit" Style="{DynamicResource ButtonStyle}" Height="58" Margin="63,44,326,33" Width="164" Grid.Column="1"/>
+        <Button Content="Сохранить" Grid.Row="4" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="58" Margin="52,0,0,0" Width="164" Grid.Column="1" HorizontalAlignment="Left"/>
+        <Button Content="Отмена" Grid.Row="4" x:Name="Выход" Click="Exit" Style="{DynamicResource ButtonStyle}" Height="58" Margin="265,0,0,0" Width="164" RenderTransformOrigin="0.483,0.547" HorizontalAlignment="Left"/>
         <TextBox Text="{Binding Причина}" Grid.Column="1" Grid.Row="3" Margin="40,42,40,38" x:Name="Причина" SpellCheck.IsEnabled="True" Language="ru-ru"/>
     </Grid>
 </Page>

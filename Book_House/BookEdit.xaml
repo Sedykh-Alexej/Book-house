@@ -36,11 +36,18 @@
 
         <TextBox Text="{Binding Название}" Grid.Column="1" Grid.Row="0" Margin="40,40,40,25" Name="Название" SpellCheck.IsEnabled="True" Language="ru-ru"></TextBox>
         <ComboBox SelectedItem="{Binding Жанры}" Grid.Column="1" Grid.Row="1" DisplayMemberPath="Наименование" x:Name="Жанр" Margin="40,40,40,26"></ComboBox>
-        <TextBox Text="{Binding Цена}" Grid.Column="1" Grid.Row="2" Margin="40,40,40,25" Name="Цена"></TextBox>
-        <TextBox Text="{Binding Количество}" Grid.Column="1" Grid.Row="3" Margin="40,40,40,25" Name="Количество"></TextBox>
+        <TextBox Text="{Binding Цена}" Grid.Column="1" Grid.Row="2" Margin="40,40,40,25" Name="Цена"
+                 PreviewTextInput="Количество_PreviewTextInput"
+                 PreviewKeyDown="Количество_PreviewKeyDown"
+                 DataObject.Pasting="Количество_Pasting"></TextBox>
+        <TextBox Text="{Binding Количество}" Grid.Column="1" Grid.Row="3" Margin="40,40,40,25" Name="Количество"
+                 PreviewTextInput="Количество_PreviewTextInput"
+                 PreviewKeyDown="Количество_PreviewKeyDown"
+                 DataObject.Pasting="Количество_Pasting"></TextBox>
         <TextBox Text="{Binding Комментарий}" Grid.Column="1" Grid.Row="5" Margin="40,33,40,17" Name="Комментарий"></TextBox>
+        <Button Content="Выход" HorizontalAlignment="Left" x:Name="BtnAdd_Copy" Click="Exit"  Style="{DynamicResource ButtonStyle}" Margin="191,12,0,0" Height="58" Width="230" Grid.Row="6" VerticalAlignment="Top"/>
 
-        <Button Content="Сохранить" Grid.Row="6" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="59" Margin="420,10,403,27" Width="213" Grid.ColumnSpan="2"/>
+        <Button Content="Сохранить" Grid.Row="6" Name="BtnSave" Click="BtnSave_Click" Style="{DynamicResource ButtonStyle}" Height="59" Margin="57,12,0,0" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1"/>
         <controls:AutoCompleteBox Margin="45,31,37,30" RenderTransformOrigin="0.5,0.5" Populating="Populating" x:Name="outAvtor" Grid.Row="4" Grid.Column="1" Text="{Binding Авторы.Автор1}">
             <controls:AutoCompleteBox.RenderTransform>
                 <TransformGroup>
