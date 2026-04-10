@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Book_House.Logging;
+using System;
+using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Book_House
 {
@@ -38,7 +31,7 @@ namespace Book_House
             Сотрудник.Text = Manager.IFO;
 
             Статус.Text = _currentКниги_в_продаже.Статус == 0
-                ? "В аренде"
+                ? "В продаже"
                 : _currentКниги_в_продаже.Статус1?.Название ?? string.Empty;
         }
 
@@ -63,7 +56,7 @@ namespace Book_House
 
             if (errors.Length > 0)
             {
-                MessageBox.Show(errors.ToString());
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), errors.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -74,7 +67,7 @@ namespace Book_House
                 var book = context.Книги.FirstOrDefault(d => d.id == _currentКниги_в_продаже.id_Книги);
                 if (book == null)
                 {
-                    MessageBox.Show("Выбранная книга не найдена в базе");
+                    Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Выбранная книга не найдена в базе", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
@@ -87,7 +80,7 @@ namespace Book_House
 
                     if (book.Количество < _currentКниги_в_продаже.Количество)
                     {
-                        MessageBox.Show("На складе нет столько книг");
+                        Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "На складе нет столько книг", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
 
@@ -97,18 +90,20 @@ namespace Book_House
                 {
                     if (book.Количество < _currentКниги_в_продаже.Количество)
                     {
-                        MessageBox.Show("На складе нет столько книг");
+                        Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "На складе нет столько книг", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
                 }
 
                 _currentКниги_в_продаже.К_оплате = _currentКниги_в_продаже.Количество * book.Цена;
                 context.SaveChanges();
+                AppLogger.Info($"Сохранена продажа Id={_currentКниги_в_продаже.id}");
                 Manager.Forma.Navigate(new Rent());
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                AppLogger.Error("Ошибка сохранения продажи: " + ex);
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Ошибка при сохранении. Подробнее в логе.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -118,52 +113,93 @@ namespace Book_House
 
             if (_currentКниги_в_продаже.id == 0)
             {
-                MessageBox.Show("Нельзя изменить статус, пока книга не перешла в аренду");
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Нельзя изменить статус, пока продажа не совершена.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (_currentКниги_в_продаже.Количество <= 0)
             {
-                MessageBox.Show("Количество не может быть меньше или равно 0");
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Количество не может быть меньше или равно 0", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             var book = context.Книги.FirstOrDefault(d => d.id == _currentКниги_в_продаже.id_Книги);
             if (book == null)
             {
-                MessageBox.Show("Книга не найдена в базе");
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Книга не найдена в базе", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             try
             {
-                if (_currentКниги_в_продаже.Статус == 1)
-                {
-                    _currentКниги_в_продаже.Статус = 2;
-                    book.Количество += _currentКниги_в_продаже.Количество;
-                    Статус.Text = "Книга возвращена";
-                    MessageBox.Show("Статус изменён на Книга возвращена");
-                }
-                else
+                if (_currentКниги_в_продаже.Статус == 2)
                 {
                     if (book.Количество < _currentКниги_в_продаже.Количество)
                     {
-                        MessageBox.Show("На складе нет столько книг для выставления в аренду");
+                        Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "На складе нет столько книг для выставления в продажу", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
 
                     _currentКниги_в_продаже.Статус = 1;
                     book.Количество -= _currentКниги_в_продаже.Количество;
-                    Статус.Text = "В аренде";
-                    MessageBox.Show("Статус изменён на В аренде");
+                    Статус.Text = "В продаже";
+                    AppLogger.Info($"Статус продажи Id={_currentКниги_в_продаже.id} изменён на 'В продаже'");
+                    Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Статус будет изменён на 'В продаже', после сохранения", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+                else if (_currentКниги_в_продаже.Статус == 1)
+                {
+                    _currentКниги_в_продаже.Статус = 2;
+                    book.Количество += _currentКниги_в_продаже.Количество;
 
-                context.SaveChanges();
+                    _currentКниги_в_продаже.Дата_продажи = DateTime.Today;
+
+                    Статус.Text = "Книга возвращена";
+                    AppLogger.Info($"Статус продажи Id={_currentКниги_в_продаже.id} изменён на 'Книга возвращена'");
+                    Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Статус будет изменён на 'Книга возвращена', после сохранения", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Неподдерживаемый статус для изменения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                AppLogger.Error("Ошибка изменения статуса продажи: " + ex);
+                Book_House.Controls.CustomMessageBox.Show(Window.GetWindow(this), "Произошла ошибка при изменении статуса. Подробнее в логе.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var ctx = Book_houseEntities.GetContext();
+                var entry = ctx.Entry(_currentКниги_в_продаже);
+                if (entry != null)
+                {
+                    if (entry.State == EntityState.Added)
+                    {
+                        entry.State = EntityState.Detached;
+                    }
+                    else if (entry.State == EntityState.Modified)
+                    {
+
+                        try { entry.Reload(); } catch { }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                AppLogger.Error("Ошибка при отмене изменений продажи: " + ex);
+            }
+
+            Manager.Forma.Navigate(new Rent());
+        }
+
+        private void Количество_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = !e.Text.All(char.IsDigit);
         }
     }
 }

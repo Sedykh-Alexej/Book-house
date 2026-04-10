@@ -19,7 +19,7 @@
                 <DataGridTextColumn Header="Имя клиента" Binding="{Binding Клиенты.Имя}" Width="100"></DataGridTextColumn>
                 <DataGridTextColumn Header="Отчество клиента" Binding="{Binding Клиенты.Отчество}" Width="110"></DataGridTextColumn>
                 <DataGridTextColumn Header="Количество" Binding="{Binding Количество}" Width="80"></DataGridTextColumn>
-                <DataGridTextColumn Header="Дата продажи" Binding="{Binding Дата_получения, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата продажи/возврата" Binding="{Binding Дата_продажи, StringFormat=\{0:dd.MM.yyyy\}}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Статус" Binding="{Binding Статус1.Название}" Width="*"></DataGridTextColumn>
 
                 <DataGridTemplateColumn Width="auto">
